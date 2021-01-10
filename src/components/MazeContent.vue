@@ -33,86 +33,86 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, Ref, onMounted } from "@vue/composition-api";
-import MazeGrid from "components/MazeGrid.vue";
+import { defineComponent, ref } from '@vue/composition-api'
+import MazeGrid from 'components/MazeGrid.vue'
 
 export default defineComponent({
   components: { MazeGrid },
-  name: "CompositionComponent",
+  name: 'CompositionComponent',
 
-  setup() {
-    const isConnected = ref(true);
+  setup () {
+    const isConnected = ref(true)
 
-    const wsUri: string = "ws://localhost:8080";
-    let output: HTMLElement | null;
-    let webSocket: WebSocket;
+    const wsUri = 'ws://localhost:8080'
+    let output: HTMLElement | null
+    let webSocket: WebSocket
 
-    function init() {
-      output = document.getElementById("output");
-      testWebSocket();
+    function init () {
+      output = document.getElementById('output')
+      testWebSocket()
     }
-    function testWebSocket() {
-      webSocket = new WebSocket(wsUri);
-      webSocket.onopen = function(evt) {
-        onOpen(evt);
-      };
-      webSocket.onclose = function(evt) {
-        onClose(evt);
-      };
-      webSocket.onmessage = function(evt) {
-        onMessage(evt);
-      };
-      webSocket.onerror = function(evt) {
-        onError(evt);
-      };
-    }
-
-    function onOpen(evt: any) {
-      writeToScreen("connected from web");
-      doSend("web");
-    }
-
-    function onClose(evt: CloseEvent) {
-      writeToScreen("DISCONNECTED");
-    }
-
-    function onMessage(evt: MessageEvent) {
-      writeToScreen(
-        '<span style="color: blue;">RESPONSE: ' + evt.data + "</span>"
-      );
-      //webSocket.close();
-    }
-
-    function onError(evt: Event) {
-      writeToScreen('<span style="color: red;">ERROR:</span> ' + evt);
-    }
-
-    function doSend(message: string) {
-      writeToScreen("SENT: " + message);
-      webSocket.send(message);
-    }
-
-    function writeToScreen(message: string) {
-      var pre = document.createElement("p");
-      pre.style.wordWrap = "break-word";
-      pre.innerHTML = message;
-      if (output != null) {
-        output.appendChild(pre);
+    function testWebSocket () {
+      webSocket = new WebSocket(wsUri)
+      webSocket.onopen = function (evt) {
+        onOpen(evt)
+      }
+      webSocket.onclose = function (evt) {
+        onClose(evt)
+      }
+      webSocket.onmessage = function (evt) {
+        onMessage(evt)
+      }
+      webSocket.onerror = function (evt) {
+        onError(evt)
       }
     }
 
-    function connectToServer() {
-      init();
-      isConnected.value = false;
+    function onOpen (evt: any) {
+      writeToScreen("connected from web")
+      doSend("web")
     }
 
-    function sendToServer() {
-      doSend("hit submit");
+    function onClose (evt: CloseEvent) {
+      writeToScreen("DISCONNECTED")
     }
 
-    return { isConnected, connectToServer, sendToServer };
+    function onMessage (evt: MessageEvent) {
+      // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+      writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data + '</span>')
+      // webSocket.close();
+    }
+
+    function onError (evt: Event) {
+      // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+      writeToScreen('<span style="color: red;">ERROR:</span> ' + evt)
+    }
+
+    function doSend (message: string) {
+      writeToScreen("SENT: " + message)
+      webSocket.send(message)
+    }
+
+    function writeToScreen (message: string) {
+      var pre = document.createElement("p")
+      pre.style.wordWrap = "break-word"
+      pre.innerHTML = message
+      if (output != null) {
+        output.appendChild(pre)
+      }
+    }
+
+    function connectToServer () {
+      init()
+      isConnected.value = false
+    }
+
+    function sendToServer () {
+      doSend("hit submit")
+    }
+
+    return { isConnected, connectToServer, sendToServer }
   }
-});
+})
 </script>
 <style scoped>
 .page-content {

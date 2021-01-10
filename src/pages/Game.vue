@@ -10,40 +10,40 @@
 </template>
 
 <script lang="ts">
-import { Todo, Meta } from "components/models";
-import MazeContent from "components/MazeContent.vue";
-import { defineComponent, ref } from "@vue/composition-api";
+import { Todo, Meta } from 'components/models'
+import MazeContent from 'components/MazeContent.vue'
+import { defineComponent, ref } from '@vue/composition-api'
 
 export default defineComponent({
-  name: "PageIndex",
+  name: 'PageIndex',
   components: { MazeContent },
-  setup() {
+  setup () {
     const todos = ref<Todo[]>([
       {
         id: 1,
-        content: "ct1"
+        content: 'ct1'
       },
       {
         id: 2,
-        content: "ct2"
+        content: 'ct2'
       },
       {
         id: 3,
-        content: "ct3"
+        content: 'ct3'
       },
       {
         id: 4,
-        content: "ct4"
+        content: 'ct4'
       },
       {
         id: 5,
-        content: "ct5"
+        content: 'ct5'
       }
-    ]);
+    ])
     const meta = ref<Meta>({
       totalCount: 1200
-    });
-    return { todos, meta };
+    })
+    return { todos, meta }
   }
-});
+})
 </script>
