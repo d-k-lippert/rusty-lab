@@ -26,7 +26,7 @@
     >
       <q-list>
         <q-item-label header class="text-grey-8">
-          Essential Links
+          Menü
         </q-item-label>
         <EssentialLink
           v-for="link in essentialLinks"
@@ -47,24 +47,30 @@ import EssentialLink from 'components/EssentialLink.vue'
 
 const linksData = [
   {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
+    title: 'Was ist das VRostete Labyrinth?',
+    caption: '/',
+    icon: 'help',
+    link: '/'
   },
   {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
+    title: 'Spiel-Anleitung',
+    caption: '/anleitung',
+    icon: 'description',
+    link: '/anleitung'
   },
   {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
+    title: 'Spiel-Dokument',
+    caption: '/game-doc',
+    icon: 'receipt_long',
+    link: '/game-doc'
   },
   {
+    title: 'Spiel',
+    caption: '/game',
+    icon: 'sports_esports',
+    link: '/game'
+  }
+  /* {
     title: 'Forum',
     caption: 'forum.quasar.dev',
     icon: 'record_voice_over',
@@ -87,7 +93,7 @@ const linksData = [
     caption: 'Community Quasar projects',
     icon: 'favorite',
     link: 'https://awesome.quasar.dev'
-  }
+  } */
 ]
 
 import { defineComponent, ref } from '@vue/composition-api'

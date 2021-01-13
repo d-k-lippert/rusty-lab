@@ -1,23 +1,23 @@
 <template>
   <q-page class="row justify-evenly">
     <div class="page-content">
-      <h2>Index</h2>
+      <h2>Spiel-Anleitung</h2>
+      <h4>Vorbereitung</h4>
+      <p class="text-body1" > Um das VRostete Labyrinth zu spielen, sind zwei Spieler:innen notwendig.
+         Player 1 befindet sich in der VR-Anwendung und somit im VRosteten Labyrinth.
+          Player 2 ist der Operator und hilft Player 1 mit dieser Web-Anwendung durch das Labyrinth zu navigieren und die Rätsel darin zu lösen.</p>
+      <h4>Ziel</h4>
+      <h4>Hintergrund</h4>
+      <h4>Story</h4>
     </div>
-    <example-component>
-    </example-component>
   </q-page>
 </template>
 
 <script lang="ts">
-import ExampleComponent from 'components/CompositionComponent.vue'
 import { defineComponent } from '@vue/composition-api'
 
 export default defineComponent({
-  name: 'PageIndex',
-  components: { ExampleComponent },
-  setup () {
-    return {}
-  }
+  name: 'InstructionsText'
 })
 </script>
 <style scoped>
