@@ -8,15 +8,15 @@
           @click="connectToServer"
           class="floor-color"
           text-color="white"
-          label="Tür öffnen"
+          label="connect to server"
         >
         </q-btn>
-        <!-- <q-btn
+        <q-btn
           @click="sendToServer"
           color="secondary"
           label="send to websocket server"
         >
-        </q-btn> -->
+        </q-btn>
       </div>
     </div>
     <div id="output"></div>
@@ -43,7 +43,7 @@ export default defineComponent({
   setup () {
     const isConnected = ref(true)
 
-    const wsUri = 'ws://localhost:8080'
+    const wsUri = 'ws://http://vrusty-server.herokuapp.com'
     let output: HTMLElement | null
     let webSocket: WebSocket
 
@@ -76,9 +76,15 @@ export default defineComponent({
       writeToScreen("DISCONNECTED")
     }
 
-    function onMessage (evt: MessageEvent) {
+    function onMessage(evt: MessageEvent) {
       // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-      writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data + '</span>')
+      writeToScreen(
+        '<span style="color: blue;">RESPONSE: ' +
+          evt.data.substring(1, evt.data.lenght) +
+          "</span>"
+      );
+
+      console.log(evt.data);
       // webSocket.close();
     }
 
