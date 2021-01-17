@@ -43,10 +43,11 @@ export default defineComponent({
 
   setup () {
     const isConnected = ref(true)
-    const userX = ref(8)
-    const userY = ref(17)
+    const userX = ref(5)
+    const userY = ref(30)
 
-    const wsUri = 'ws://http://vrusty-server.herokuapp.com'
+    // const wsUri = 'ws://http://vrusty-server.herokuapp.com'
+    const wsUri = 'ws://localhost:8080'
     let output: HTMLElement | null
     let webSocket: WebSocket
 
