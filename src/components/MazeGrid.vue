@@ -10,6 +10,7 @@
         :style="computeStyle(n)"
       ></div>
     </div>
+    {{x}} {{y}}
   </div>
 </template>
 
@@ -18,11 +19,19 @@ import { defineComponent, ref } from '@vue/composition-api'
 
 export default defineComponent({
   name: 'MazeGrid',
-
-  setup () {
-    const userX = ref(8)
-    const userY = ref(16)
-
+  props: { x: Number, y: Number },
+  setup (props) {
+    const propToPosX = props.x
+    const propToPosY = props.y
+    const userX = ref(0)
+    const userY = ref(0)
+    if (typeof propToPosX === 'number') {
+      userX.value = propToPosX
+    }
+    if (typeof propToPosY === 'number') {
+      userY.value = propToPosY
+    }
+    console.log(userX.value, userY.value)
     const computeStyle = (gridPos: number) => {
       const colWidth = 6.25
       // tint walls dark
