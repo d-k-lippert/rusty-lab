@@ -46,6 +46,9 @@ export default defineComponent({
     const userX = ref(5)
     const userY = ref(30)
 
+    userX.value = 0
+    userY.value = 0
+
     // const wsUri = 'ws://http://vrusty-server.herokuapp.com'
     const wsUri = 'ws://localhost:8080'
     let output: HTMLElement | null

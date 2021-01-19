@@ -15,23 +15,35 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@vue/composition-api'
+import { defineComponent, ref, watch } from '@vue/composition-api'
 
 export default defineComponent({
   name: 'MazeGrid',
   props: { x: Number, y: Number },
   setup (props) {
-    const propToPosX = props.x
-    const propToPosY = props.y
     const userX = ref(0)
     const userY = ref(0)
-    if (typeof propToPosX === 'number') {
-      userX.value = propToPosX
-    }
-    if (typeof propToPosY === 'number') {
-      userY.value = propToPosY
-    }
-    console.log(userX.value, userY.value)
+    watch(() => props.x, (oldVal, newVal) => {
+      console.log(
+        'value für x',
+        newVal
+      )
+      const propToPosX = props.x
+      if (typeof propToPosX === 'number') {
+        userX.value = propToPosX
+      }
+    })
+    watch(() => props.y, (oldVal, newVal) => {
+      console.log(
+        'values für y',
+        newVal
+      )
+      const propToPosY = props.y
+      if (typeof propToPosY === 'number') {
+        userY.value = propToPosY
+      }
+    })
+
     const computeStyle = (gridPos: number) => {
       const colWidth = 6.25
       // tint walls dark
