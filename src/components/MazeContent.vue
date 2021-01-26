@@ -11,31 +11,26 @@
           label="connect to server"
         >
         </q-btn>
-        <q-btn
+<!--         <q-btn
           @click="sendToServer"
           color="secondary"
           label="send to websocket server"
+          disable
         >
-        </q-btn>
+        </q-btn> -->
+        <q-toggle
+      v-model="initialVal"
+      color="green"
+    />
       </div>
     </div>
     <div id="output"></div>
-    <!--     <p>
-      {{ isTriggering }}
-    </p> -->
-    <!-- <q-badge
-      v-if="!isTriggering"
-      color="orange"
-      text-color="black"
-      label="hide me with trigger"
-    /> -->
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@vue/composition-api'
+import { defineComponent, ref, watch } from '@vue/composition-api'
 import MazeGrid from 'components/MazeGrid.vue'
-/* import eventBus from 'src/event-bus/event-bus'; */
 
 export default defineComponent({
   components: { MazeGrid },
@@ -46,8 +41,17 @@ export default defineComponent({
     const userX = ref(5)
     const userY = ref(30)
 
-    userX.value = 0
-    userY.value = 0
+    const initialVal = ref(false)
+
+    userX.value = 2
+    userY.value = 2
+
+    watch(initialVal, (newValue, oldValue) => {
+      console.log('The new counter value is: ', initialVal.value)
+      if (initialVal.value === true) {
+        doSend('move cube')
+      }
+    })
 
     // const wsUri = 'ws://http://vrusty-server.herokuapp.com'
     const wsUri = 'ws://localhost:8080'
@@ -132,7 +136,7 @@ export default defineComponent({
       }
     }
 
-    return { isConnected, connectToServer, sendToServer, userX, userY }
+    return { isConnected, connectToServer, sendToServer, userX, userY, initialVal }
   }
 })
 </script>

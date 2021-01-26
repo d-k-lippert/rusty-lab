@@ -21,9 +21,10 @@ export default defineComponent({
   name: 'MazeGrid',
   props: { x: Number, y: Number },
   setup (props) {
-    const userX = ref(0)
-    const userY = ref(0)
-    watch(() => props.x, (oldVal, newVal) => {
+    const userX = ref(5) // start value x
+    const userY = ref(32) // start value y
+
+    watch(() => props.x, (oldVal, newVal) => { // always watch changes for x values sent from vr-app
       console.log(
         'value für x',
         newVal
@@ -33,6 +34,7 @@ export default defineComponent({
         userX.value = propToPosX
       }
     })
+    // always watch changes for y values sent from vr-app
     watch(() => props.y, (oldVal, newVal) => {
       console.log(
         'values für y',
