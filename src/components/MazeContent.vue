@@ -19,9 +19,30 @@
         >
         </q-btn> -->
         <q-toggle
-      v-model="initialVal"
-      color="green"
-    />
+          label="eisen"
+          v-model="eisenVal"
+          color="green"
+        />
+        <q-toggle
+          label="cobalt"
+          v-model="cobaltVal"
+          color="red"
+        />
+        <q-toggle
+          label="nickel"
+          v-model="nickelVal"
+          color="blue"
+        />
+        <q-toggle
+          label="terbium"
+          v-model="terbiumVal"
+          color="secondary"
+        />
+        <q-toggle
+          label="dysprosium"
+          v-model="dysprosiumVal"
+          color="tertiary"
+        />
       </div>
     </div>
     <div id="output"></div>
@@ -41,18 +62,46 @@ export default defineComponent({
     const userX = ref(5)
     const userY = ref(30)
 
-    const initialVal = ref(false)
+    const eisenVal = ref(false)
+    const cobaltVal = ref(false)
+    const nickelVal = ref(false)
+    const terbiumVal = ref(false)
+    const dysprosiumVal = ref(false)
 
     userX.value = 2
     userY.value = 2
 
-    watch(initialVal, (newValue, oldValue) => {
-      console.log('The new counter value is: ', initialVal.value)
-      if (initialVal.value === true) {
-        doSend('move cube')
+    watch(eisenVal, (newValue, oldValue) => {
+      console.log('The new counter value is: ', eisenVal.value)
+      if (eisenVal.value === true) {
+        doSend('move eisen')
       }
     })
-
+    watch(cobaltVal, (newValue, oldValue) => {
+      console.log('The new counter value is: ', cobaltVal.value)
+      if (cobaltVal.value === true) {
+        doSend('move cobalt')
+      }
+    })
+    watch(nickelVal, (newValue, oldValue) => {
+      console.log('The new counter value is: ', nickelVal.value)
+      if (nickelVal.value === true) {
+        doSend('move nickel')
+      }
+    })
+    watch(terbiumVal, (newValue, oldValue) => {
+      console.log('The new counter value is: ', terbiumVal.value)
+      if (terbiumVal.value === true) {
+        doSend('move terbium')
+      }
+    })
+    watch(dysprosiumVal, (newValue, oldValue) => {
+      console.log('The new counter value is: ', dysprosiumVal.value)
+      if (dysprosiumVal.value === true) {
+        doSend('move dysprosium')
+      }
+    })
+    
     // const wsUri = 'ws://http://vrusty-server.herokuapp.com'
     const wsUri = 'ws://localhost:8080'
     let output: HTMLElement | null
@@ -136,7 +185,7 @@ export default defineComponent({
       }
     }
 
-    return { isConnected, connectToServer, sendToServer, userX, userY, initialVal }
+    return { isConnected, connectToServer, sendToServer, userX, userY, eisenVal, cobaltVal, nickelVal, terbiumVal, dysprosiumVal }
   }
 })
 </script>
