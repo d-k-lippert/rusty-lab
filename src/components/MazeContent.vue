@@ -1,6 +1,7 @@
 <template>
   <div class="page-content q-mt-md">
     <div>
+      <magnet-dialog :x="userX" :y="userY" ></magnet-dialog>
       <maze-grid :x="userX" :y="userY" > </maze-grid>
       <div class="row justify-center">
         <q-btn
@@ -11,19 +12,12 @@
           label="connect to server"
         >
         </q-btn>
-<!--         <q-btn
-          @click="sendToServer"
-          color="secondary"
-          label="send to websocket server"
-          disable
-        >
-        </q-btn> -->
-        <q-toggle
+        <!-- <q-toggle
           label="eisen"
           v-model="eisenVal"
           color="green"
-        />
-        <q-toggle
+        /> -->
+<!--         <q-toggle
           label="cobalt"
           v-model="cobaltVal"
           color="red"
@@ -42,7 +36,8 @@
           label="dysprosium"
           v-model="dysprosiumVal"
           color="tertiary"
-        />
+        /> -->
+
       </div>
     </div>
     <div id="output"></div>
@@ -52,9 +47,11 @@
 <script lang="ts">
 import { defineComponent, ref, watch } from '@vue/composition-api'
 import MazeGrid from 'components/MazeGrid.vue'
+import MagnetDialog from 'components/MagnetDialog.vue'
+import eventBus from 'src/event-bus/event-bus'
 
 export default defineComponent({
-  components: { MazeGrid },
+  components: { MazeGrid, MagnetDialog },
   name: 'CompositionComponent',
 
   setup () {
@@ -62,50 +59,25 @@ export default defineComponent({
     const userX = ref(5)
     const userY = ref(30)
 
-    const eisenVal = ref(false)
-    const cobaltVal = ref(false)
-    const nickelVal = ref(false)
-    const terbiumVal = ref(false)
-    const dysprosiumVal = ref(false)
 
     userX.value = 2
     userY.value = 2
 
-    watch(eisenVal, (newValue, oldValue) => {
-      console.log('The new counter value is: ', eisenVal.value)
-      if (eisenVal.value === true) {
-        doSend('move eisen')
-      }
-    })
-    watch(cobaltVal, (newValue, oldValue) => {
-      console.log('The new counter value is: ', cobaltVal.value)
-      if (cobaltVal.value === true) {
-        doSend('move cobalt')
-      }
-    })
-    watch(nickelVal, (newValue, oldValue) => {
-      console.log('The new counter value is: ', nickelVal.value)
-      if (nickelVal.value === true) {
-        doSend('move nickel')
-      }
-    })
-    watch(terbiumVal, (newValue, oldValue) => {
-      console.log('The new counter value is: ', terbiumVal.value)
-      if (terbiumVal.value === true) {
-        doSend('move terbium')
-      }
-    })
-    watch(dysprosiumVal, (newValue, oldValue) => {
-      console.log('The new counter value is: ', dysprosiumVal.value)
-      if (dysprosiumVal.value === true) {
-        doSend('move dysprosium')
-      }
-    })
-    
     // const wsUri = 'ws://http://vrusty-server.herokuapp.com'
     const wsUri = 'ws://localhost:8080'
     let output: HTMLElement | null
     let webSocket: WebSocket
+
+    // listen to right answer triggered from iron modal in puzzle room 3
+    eventBus.$on('move-iron-cube', () => {
+      console.log('Move Iron Cube!')
+      /* doSend('move eisen') */
+    })
+
+    // listen to wrong answer 
+    eventBus.$on('reset-player', () => {
+      console.log('player got resetted!')
+    })
 
     function init () {
       output = document.getElementById('output')
@@ -185,7 +157,7 @@ export default defineComponent({
       }
     }
 
-    return { isConnected, connectToServer, sendToServer, userX, userY, eisenVal, cobaltVal, nickelVal, terbiumVal, dysprosiumVal }
+    return { isConnected, connectToServer, sendToServer, userX, userY }
   }
 })
 </script>
