@@ -6,17 +6,18 @@
       <nickel-dialog :x="userX" :y="userY" ></nickel-dialog>
       <terbium-dialog :x="userX" :y="userY" ></terbium-dialog>
       <dysprosium-dialog :x="userX" :y="userY" ></dysprosium-dialog>
+      <entry-input></entry-input>
       
       <maze-grid :x="userX" :y="userY" > </maze-grid>
       <div class="row justify-center">
-        <q-btn
+        <!-- <q-btn
           v-if="isConnected"
           @click="connectToServer"
           class="floor-color"
           text-color="white"
           label="connect to server"
         >
-        </q-btn>
+        </q-btn> -->
       </div>
     </div>
     <div id="output"></div>
@@ -24,17 +25,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from '@vue/composition-api'
+import { defineComponent, ref } from '@vue/composition-api'
 import MazeGrid from 'components/MazeGrid.vue'
 import IronDialog from 'components/Dialog/IronDialog.vue'
 import CobaltDialog from 'components/Dialog/CobaltDialog.vue'
 import NickelDialog from 'components/Dialog/NickelDialog.vue'
 import TerbiumDialog from 'components/Dialog/TerbiumDialog.vue'
 import DysprosiumDialog from 'components/Dialog/DysprosiumDialog.vue'
+import EntryInput from 'components/EntryInput.vue'
 import eventBus from 'src/event-bus/event-bus'
 
 export default defineComponent({
-  components: { MazeGrid, IronDialog, CobaltDialog, NickelDialog, TerbiumDialog, DysprosiumDialog },
+  components: { MazeGrid, IronDialog, CobaltDialog, NickelDialog, TerbiumDialog, DysprosiumDialog, EntryInput },
   name: 'CompositionComponent',
 
   setup () {
@@ -46,7 +48,7 @@ export default defineComponent({
     userX.value = 2
     userY.value = 2
 
-    // const wsUri = 'ws://http://vrusty-server.herokuapp.com'
+    // const wsUri = 'ws://http://vrusty-server.herokuapp.com:80'
     const wsUri = 'ws://localhost:8080'
     let output: HTMLElement | null
     let webSocket: WebSocket
@@ -97,6 +99,15 @@ export default defineComponent({
     eventBus.$on('reset-player', () => {
       console.log('player got resetted!')
       doSend('reset player')
+    })
+
+
+    //prevents double triggering off emitted event
+    eventBus.$off("connect-server");
+    //
+    eventBus.$on('connect-server', () => {
+      console.log('connected!')
+      connectToServer()
     })
 
     function init () {
