@@ -25,7 +25,7 @@ export default defineComponent({
     const userY = ref(32) // start value y
 
     watch(() => props.x, (oldVal, newVal) => { // always watch changes for x values sent from vr-app
-/*       console.log(
+      /*       console.log(
         'value für x',
         newVal
       ) */
@@ -36,7 +36,7 @@ export default defineComponent({
     })
     // always watch changes for y values sent from vr-app
     watch(() => props.y, (oldVal, newVal) => {
-/*       console.log(
+      /*       console.log(
         'values für y',
         newVal
       ) */

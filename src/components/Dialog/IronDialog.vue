@@ -28,51 +28,39 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref, ref, watch } from '@vue/composition-api'
+import { defineComponent, ref, watch } from '@vue/composition-api'
 import eventBus from 'src/event-bus/event-bus'
 export default defineComponent({
   name: 'IronDialog',
   props: { x: Number, y: Number },
   setup (props) {
-
     const ironModal = ref(false)
 
-    const propX = ref(props.x)
-    const propY = ref(props.y)
-
-/*     watch([propX, propY], ([newX, newY],[oldX, oldY]) => {
-            console.log('x: ',newX, 'y: ',newY);
-      if(newX === 14 && newY === 7){
-            ironModal.value=true
-            console.log('OPEN MODAL!')
-        }
-    }); */
-
     watch(() => props, () => {
-      console.log("deep ", props.x, props.y);
-      if(props.x === 14 && props.y === 7){
-            ironModal.value=true
-            console.log('OPEN MODAL!')
-        }
+      console.log('deep ', props.x, props.y)
+      if (props.x === 14 && props.y === 7) {
+        ironModal.value = true
+        console.log('OPEN MODAL!')
+      }
     },
     { deep: true }
-    );
-        
+    )
+
     function moveIronCube () {
-        const modal = document.querySelector('.q-dialog__backdrop.fixed-full')
-        // adding class to modal
-         modal!.className+=' right-answer'
-      eventBus.$emit('move-iron-cube', () => {
-      /* console.log('Custom event triggered!') */
-    })
+      const modal = document.querySelector('.q-dialog__backdrop.fixed-full')
+      // adding class to modal
+         modal!.className += ' right-answer'
+         eventBus.$emit('move-iron-cube', () => {
+           console.log('iron emitted')
+         })
     }
     function resetPlayer () {
-        const modal = document.querySelector('.q-dialog__backdrop.fixed-full')
-         modal!.className+=' wrong-answer'
-         //console.log(modal)
-      eventBus.$emit('reset-player', () => {
-      /* console.log('Custom event triggered!') */
-    })
+      const modal = document.querySelector('.q-dialog__backdrop.fixed-full')
+         modal!.className += ' wrong-answer'
+         // console.log(modal)
+         eventBus.$emit('reset-player', () => {
+           console.log('Custom event triggered!')
+         })
     }
     return { ironModal, moveIronCube, resetPlayer }
   }

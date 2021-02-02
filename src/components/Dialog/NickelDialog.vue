@@ -28,44 +28,39 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref, ref, watch } from '@vue/composition-api'
+import { defineComponent, ref, watch } from '@vue/composition-api'
 import eventBus from 'src/event-bus/event-bus'
 export default defineComponent({
   name: 'NickelDialog',
   props: { x: Number, y: Number },
   setup (props) {
-
     const nickelModal = ref(false)
 
-    const propX = ref(props.x)
-    const propY = ref(props.y)
-
-
     watch(() => props, () => {
-      console.log("deep ", props.x, props.y);
-      if(props.x === 13 && props.y === 4){
-            nickelModal.value=true
-            console.log('OPEN NICKEL MODAL!')
-        }
+      console.log('deep ', props.x, props.y)
+      if (props.x === 13 && props.y === 4) {
+        nickelModal.value = true
+        console.log('OPEN NICKEL MODAL!')
+      }
     },
     { deep: true }
-    );
-        
+    )
+
     function moveNickelCube () {
-        const modal = document.querySelector('.q-dialog__backdrop.fixed-full')
-        // adding class to modal
-         modal!.className+=' right-answer'
-      eventBus.$emit('move-nickel-cube', () => {
-      
-    })
+      const modal = document.querySelector('.q-dialog__backdrop.fixed-full')
+      // adding class to modal
+         modal!.className += ' right-answer'
+         eventBus.$emit('move-nickel-cube', () => {
+           console.log('nickel emitted')
+         })
     }
     function resetPlayer () {
-        const modal = document.querySelector('.q-dialog__backdrop.fixed-full')
-         modal!.className+=' wrong-answer'
-         //console.log(modal)
-      eventBus.$emit('reset-player', () => {
-      /* console.log('Custom event triggered!') */
-    })
+      const modal = document.querySelector('.q-dialog__backdrop.fixed-full')
+         modal!.className += ' wrong-answer'
+         // console.log(modal)
+         eventBus.$emit('reset-player', () => {
+           console.log('reset player')
+         })
     }
     return { nickelModal, moveNickelCube, resetPlayer }
   }

@@ -2,7 +2,7 @@
 <div>
     <q-dialog v-model="entryInput" persistent>
       <q-card style="min-width: 350px">
-         
+
         <q-card-section>
           <div class="text-h6">Bitte geben Sie die Block-Identifikationsnummer ein, um die Satellitenübertragung zu starten.</div>
         </q-card-section>
@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from '@vue/composition-api'
+import { defineComponent, ref } from '@vue/composition-api'
 import eventBus from 'src/event-bus/event-bus'
 import { Notify } from 'quasar'
 export default defineComponent({
@@ -29,12 +29,10 @@ export default defineComponent({
     const entryInput = ref(true)
     const blockIdentifier = ref('')
 
-    
-
     function sendBlockIdentifier () {
       console.log(blockIdentifier.value)
-      if(blockIdentifier.value==='ferrum-magneticum-97'){
-        entryInput.value=false
+      if (blockIdentifier.value === 'ferrum-magneticum-97') {
+        entryInput.value = false
         Notify.create({
           message: 'Eingabe erfolgreich!',
           caption: 'Die Satellitenverbindung wird aufgebaut',
@@ -43,14 +41,12 @@ export default defineComponent({
           icon: 'success',
           timeout: 2500,
           spinner: true
-      })
+        })
 
-      eventBus.$emit('connect-server', () => {
-        console.log('event emitted to conncet to server')
-      })
-
-      }
-      else{
+        eventBus.$emit('connect-server', () => {
+          console.log('event emitted to conncet to server')
+        })
+      } else {
         Notify.create({
           message: 'Sie haben eine falsche Block-Kennung eingegeben',
           caption: 'Hat Ihr Partner Ihnen die richtige Kennung mitgeteilt?',
@@ -58,7 +54,7 @@ export default defineComponent({
           position: 'center',
           icon: 'warning',
           timeout: 2500
-      })
+        })
       }
     }
 

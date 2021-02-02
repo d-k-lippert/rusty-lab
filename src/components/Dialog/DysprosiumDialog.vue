@@ -28,43 +28,39 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref, ref, watch } from '@vue/composition-api'
+import { defineComponent, ref, watch } from '@vue/composition-api'
 import eventBus from 'src/event-bus/event-bus'
 export default defineComponent({
   name: 'DysprosiumDialog',
   props: { x: Number, y: Number },
   setup (props) {
-
     const dysprosiumModal = ref(false)
 
-    const propX = ref(props.x)
-    const propY = ref(props.y)
-
     watch(() => props, () => {
-      console.log("deep ", props.x, props.y);
-      if(props.x === 15 && props.y === 2){
-            dysprosiumModal.value=true
-            console.log('OPEN DYSPROSIUM MODAL!')
-        }
+      console.log('deep ', props.x, props.y)
+      if (props.x === 15 && props.y === 2) {
+        dysprosiumModal.value = true
+        console.log('OPEN DYSPROSIUM MODAL!')
+      }
     },
     { deep: true }
-    );
-        
+    )
+
     function moveDysprosiumCube () {
-        const modal = document.querySelector('.q-dialog__backdrop.fixed-full')
-        // adding class to modal
-         modal!.className+=' right-answer'
-      eventBus.$emit('move-dysprosium-cube', () => {
-      
-    })
+      const modal = document.querySelector('.q-dialog__backdrop.fixed-full')
+      // adding class to modal
+         modal!.className += ' right-answer'
+         eventBus.$emit('move-dysprosium-cube', () => {
+           console.log('dysprosium emitted')
+         })
     }
     function resetPlayer () {
-        const modal = document.querySelector('.q-dialog__backdrop.fixed-full')
-         modal!.className+=' wrong-answer'
-         //console.log(modal)
-      eventBus.$emit('reset-player', () => {
-      /* console.log('Custom event triggered!') */
-    })
+      const modal = document.querySelector('.q-dialog__backdrop.fixed-full')
+         modal!.className += ' wrong-answer'
+         // console.log(modal)
+         eventBus.$emit('reset-player', () => {
+           console.log('reset player')
+         })
     }
     return { dysprosiumModal, moveDysprosiumCube, resetPlayer }
   }

@@ -7,7 +7,7 @@
       <terbium-dialog :x="userX" :y="userY" ></terbium-dialog>
       <dysprosium-dialog :x="userX" :y="userY" ></dysprosium-dialog>
       <entry-input></entry-input>
-      
+
       <maze-grid :x="userX" :y="userY" > </maze-grid>
       <div class="row justify-center">
         <!-- <q-btn
@@ -44,66 +44,64 @@ export default defineComponent({
     const userX = ref(5)
     const userY = ref(30)
 
-
     userX.value = 2
     userY.value = 2
 
-     const wsUri = 'ws://vrusty-server.herokuapp.com'
+    const wsUri = 'ws://vrusty-server.herokuapp.com'
     // const wsUri = 'ws://localhost:8080'
     let output: HTMLElement | null
     let webSocket: WebSocket
 
-    //prevents double triggering off emitted event
-    eventBus.$off("move-iron-cube");
+    // prevents double triggering off emitted event
+    eventBus.$off('move-iron-cube')
     // listen to right answer triggered from iron modal in puzzle room 3
     eventBus.$on('move-iron-cube', () => {
       console.log('Move Iron Cube!')
       doSend('move iron')
     })
 
-    //prevents double triggering off emitted event
-    eventBus.$off("move-cobalt-cube");
+    // prevents double triggering off emitted event
+    eventBus.$off('move-cobalt-cube')
     // listen to right answer triggered from iron modal in puzzle room 3
     eventBus.$on('move-cobalt-cube', () => {
       console.log('Move Cobalt Cube!')
       doSend('move cobalt')
     })
 
-    //prevents double triggering off emitted event
-    eventBus.$off("move-nickel-cube");
+    // prevents double triggering off emitted event
+    eventBus.$off('move-nickel-cube')
     // listen to right answer triggered from iron modal in puzzle room 3
     eventBus.$on('move-nickel-cube', () => {
       console.log('Move Nickel Cube!')
       doSend('move nickel')
     })
 
-    //prevents double triggering off emitted event
-    eventBus.$off("move-terbium-cube");
+    // prevents double triggering off emitted event
+    eventBus.$off('move-terbium-cube')
     // listen to right answer triggered from iron modal in puzzle room 3
     eventBus.$on('move-terbium-cube', () => {
       console.log('Move Terbium Cube!')
       doSend('move terbium')
     })
 
-    //prevents double triggering off emitted event
-    eventBus.$off("move-dysprosium-cube");
+    // prevents double triggering off emitted event
+    eventBus.$off('move-dysprosium-cube')
     // listen to right answer triggered from iron modal in puzzle room 3
     eventBus.$on('move-dysprosium-cube', () => {
       console.log('Move Dysprosium Cube!')
       doSend('move dysprosium')
     })
 
-    //prevents double triggering off emitted event
-    eventBus.$off("reset-player");
-    // listen to wrong answer 
+    // prevents double triggering off emitted event
+    eventBus.$off('reset-player')
+    // listen to wrong answer
     eventBus.$on('reset-player', () => {
       console.log('player got resetted!')
       doSend('reset player')
     })
 
-
-    //prevents double triggering off emitted event
-    eventBus.$off("connect-server");
+    // prevents double triggering off emitted event
+    eventBus.$off('connect-server')
     //
     eventBus.$on('connect-server', () => {
       console.log('connected!')

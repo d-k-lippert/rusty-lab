@@ -28,43 +28,39 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref, ref, watch } from '@vue/composition-api'
+import { defineComponent, ref, watch } from '@vue/composition-api'
 import eventBus from 'src/event-bus/event-bus'
 export default defineComponent({
   name: 'CobaltDialog',
   props: { x: Number, y: Number },
   setup (props) {
-
     const cobaltModal = ref(false)
 
-    const propX = ref(props.x)
-    const propY = ref(props.y)
-
     watch(() => props, () => {
-      console.log("deep ", props.x, props.y);
-      if(props.x === 12 && props.y === 5){
-            cobaltModal.value=true
-            console.log('OPEN COBALT MODAL!')
-        }
+      console.log('deep ', props.x, props.y)
+      if (props.x === 12 && props.y === 5) {
+        cobaltModal.value = true
+        console.log('OPEN COBALT MODAL!')
+      }
     },
     { deep: true }
-    );
-        
+    )
+
     function moveCobaltCube () {
-        const modal = document.querySelector('.q-dialog__backdrop.fixed-full')
-        // adding class to modal
-         modal!.className+=' right-answer'
-      eventBus.$emit('move-cobalt-cube', () => {
-      
-    })
+      const modal = document.querySelector('.q-dialog__backdrop.fixed-full')
+      // adding class to modal
+         modal!.className += ' right-answer'
+         eventBus.$emit('move-cobalt-cube', () => {
+           console.log('cobalt emitted')
+         })
     }
     function resetPlayer () {
-        const modal = document.querySelector('.q-dialog__backdrop.fixed-full')
-         modal!.className+=' wrong-answer'
-         //console.log(modal)
-      eventBus.$emit('reset-player', () => {
-      /* console.log('Custom event triggered!') */
-    })
+      const modal = document.querySelector('.q-dialog__backdrop.fixed-full')
+         modal!.className += ' wrong-answer'
+         // console.log(modal)
+         eventBus.$emit('reset-player', () => {
+           console.log('reset player')
+         })
     }
     return { cobaltModal, moveCobaltCube, resetPlayer }
   }
