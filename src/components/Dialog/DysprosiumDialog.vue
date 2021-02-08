@@ -1,76 +1,160 @@
 <template>
-<div>
+  <div>
     <!-- <q-btn label="show dysprosium dialog" @click="dysprosiumModal = true" /> -->
-    <q-dialog v-model="dysprosiumModal" persistent transition-show="scale" transition-hide="jump-up">
+    <q-dialog
+      v-model="dysprosiumModal"
+      persistent
+      transition-show="scale"
+      transition-hide="jump-up"
+    >
       <q-card style="width: 300px" class="q-px-sm q-pb-md">
         <q-card-section class="row items-center q-pb-none ">
-        <div class="text-h6">Dysprosium-Cube </div>
-        <q-space />
+          <div class="text-h6">Dysprosium-Cube</div>
+          <q-space />
         </q-card-section>
-         <q-card-section class="row items-center justify-between q-pa-md q-ma-md">
-          <q-btn size="xl" label="D" color="blue" @click="resetPlayer" round dense v-close-popup />
-          <q-btn size="xl" icon="escalator" color="positive" @click="resetPlayer"  round dense v-close-popup />
-          <q-btn size="xl" icon="escalator" color="warning" @click="resetPlayer"  round dense v-close-popup />
+        <q-card-section
+          class="row items-center justify-between q-pa-md q-ma-md"
+        >
+          <q-btn
+            size="xl"
+            label="D"
+            color="blue"
+            @click="resetPlayer"
+            round
+            dense
+            v-close-popup
+          />
+          <q-btn
+            size="xl"
+            icon="escalator"
+            color="positive"
+            @click="resetPlayer"
+            round
+            dense
+            v-close-popup
+          />
+          <q-btn
+            size="xl"
+            icon="escalator"
+            color="warning"
+            @click="resetPlayer"
+            round
+            dense
+            v-close-popup
+          />
         </q-card-section>
-         <q-card-section class="row items-center justify-between q-pa-md q-ma-md">
-          <q-btn size="xl" icon="escalator" color="accent" @click="resetPlayer" round dense v-close-popup />
-          <q-btn size="xl" icon="close" @click="moveDysprosiumCube" round dense v-close-popup />
-          <q-btn size="xl" icon="escalator" color="red" @click="resetPlayer" round dense v-close-popup />
+        <q-card-section
+          class="row items-center justify-between q-pa-md q-ma-md"
+        >
+          <q-btn
+            size="xl"
+            icon="escalator"
+            color="accent"
+            @click="resetPlayer"
+            round
+            dense
+            v-close-popup
+          />
+          <q-btn
+            size="xl"
+            icon="close"
+            @click="moveDysprosiumCube"
+            round
+            dense
+            v-close-popup
+          />
+          <q-btn
+            size="xl"
+            icon="escalator"
+            color="red"
+            @click="resetPlayer"
+            round
+            dense
+            v-close-popup
+          />
         </q-card-section>
-         <q-card-section class="row items-center justify-between q-pa-md q-ma-md">
-          <q-btn size="xl" icon="change_history" color="primary" @click="resetPlayer" round dense v-close-popup />
-          <q-btn size="xl" icon="dangerous" color="secondary" @click="resetPlayer" round dense v-close-popup />
-          <q-btn size="xl" label="9" color="black" @click="resetPlayer" round dense v-close-popup />
+        <q-card-section
+          class="row items-center justify-between q-pa-md q-ma-md"
+        >
+          <q-btn
+            size="xl"
+            icon="change_history"
+            color="primary"
+            @click="resetPlayer"
+            round
+            dense
+            v-close-popup
+          />
+          <q-btn
+            size="xl"
+            icon="dangerous"
+            color="secondary"
+            @click="resetPlayer"
+            round
+            dense
+            v-close-popup
+          />
+          <q-btn
+            size="xl"
+            label="9"
+            color="black"
+            @click="resetPlayer"
+            round
+            dense
+            v-close-popup
+          />
         </q-card-section>
       </q-card>
     </q-dialog>
-</div>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from '@vue/composition-api'
-import eventBus from 'src/event-bus/event-bus'
+import { defineComponent, ref, watch } from "@vue/composition-api";
+import eventBus from "src/event-bus/event-bus";
 export default defineComponent({
-  name: 'DysprosiumDialog',
+  name: "DysprosiumDialog",
   props: { x: Number, y: Number },
-  setup (props) {
-    const dysprosiumModal = ref(false)
+  setup(props) {
+    const dysprosiumModal = ref(false);
 
-    watch(() => props, () => {
-      console.log('deep ', props.x, props.y)
-      if (props.x === 15 && props.y === 2) {
-        dysprosiumModal.value = true
-        console.log('OPEN DYSPROSIUM MODAL!')
-      }
-    },
-    { deep: true }
-    )
+    watch(
+      () => props,
+      () => {
+        console.log("deep ", props.x, props.y);
+        if (props.x === 13 && props.y === 3) {
+          dysprosiumModal.value = true;
+          console.log("OPEN DYSPROSIUM MODAL!");
+        }
+      },
+      { deep: true }
+    );
 
-    function moveDysprosiumCube () {
-      const modal = document.querySelector('.q-dialog__backdrop.fixed-full')
+    function moveDysprosiumCube() {
+      const modal = document.querySelector(".q-dialog__backdrop.fixed-full");
       // adding class to modal
-         modal!.className += ' right-answer'
-         eventBus.$emit('move-dysprosium-cube', () => {
-           console.log('dysprosium emitted')
-         })
+      modal!.className += " right-answer";
+      eventBus.$emit("move-dysprosium-cube", () => {
+        console.log("dysprosium emitted");
+      });
     }
-    function resetPlayer () {
-      const modal = document.querySelector('.q-dialog__backdrop.fixed-full')
-         modal!.className += ' wrong-answer'
-         // console.log(modal)
-         eventBus.$emit('reset-player', () => {
-           console.log('reset player')
-         })
+    function resetPlayer() {
+      const modal = document.querySelector(".q-dialog__backdrop.fixed-full");
+      modal!.className += " wrong-answer";
+      // console.log(modal)
+      eventBus.$emit("reset-player", () => {
+        console.log("reset player");
+      });
     }
-    return { dysprosiumModal, moveDysprosiumCube, resetPlayer }
+    return { dysprosiumModal, moveDysprosiumCube, resetPlayer };
   }
-})
+});
 </script>
 <style>
-.right-answer{
-    background: rgba(8, 65, 8, 0.6);
+.right-answer {
+  background: rgba(8, 65, 8, 0.6);
 }
-.wrong-answer{
-    background: rgba(65, 15, 8, 0.6);
+.wrong-answer {
+  background: rgba(65, 15, 8, 0.6);
 }
 </style>
