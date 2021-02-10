@@ -64,7 +64,7 @@ module.exports = configure(function (ctx) {
       // extractCSS: false,
 
       // https://quasar.dev/quasar-cli/handling-webpack
-      extendWebpack (cfg) {
+      extendWebpack(cfg) {
         // linting is slow in TS projects, we execute it only for production builds
         if (ctx.prod) {
           cfg.module.rules.push({
@@ -88,7 +88,11 @@ module.exports = configure(function (ctx) {
     framework: {
       iconSet: 'material-icons', // Quasar icon set
       lang: 'en-us', // Quasar language pack
-      config: { notify: { /* look at QUASARCONFOPTIONS from the API card (bottom of page) */ } },
+      config: {
+        notify: {
+          /* look at QUASARCONFOPTIONS from the API card (bottom of page) */
+        }
+      },
 
       // Possible values for "importStrategy":
       // * 'auto' - (DEFAULT) Auto-import needed Quasar components & directives
@@ -103,7 +107,7 @@ module.exports = configure(function (ctx) {
       // directives: [],
 
       // Quasar plugins
-      plugins: ['Notify']
+      plugins: ['Notify', 'Meta']
     },
 
     // animations: 'all', // --- includes all animations
@@ -192,7 +196,7 @@ module.exports = configure(function (ctx) {
       // More info: https://quasar.dev/quasar-cli/developing-electron-apps/node-integration
       nodeIntegration: true,
 
-      extendWebpack (/* cfg */) {
+      extendWebpack(/* cfg */) {
         // do something with Electron main process Webpack cfg
         // chainWebpack also available besides this extendWebpack
       }

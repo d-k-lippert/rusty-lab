@@ -11,9 +11,7 @@
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
 
-        <q-toolbar-title>
-          Das VRostete Labyrinth
-        </q-toolbar-title>
+        <q-toolbar-title> Das VRostete Labyrinth </q-toolbar-title>
       </q-toolbar>
       <q-img src="../../public/rust.jpg" class="bg-img absolute-top"> </q-img>
     </q-header>
@@ -25,9 +23,7 @@
       content-class="bg-grey-1"
     >
       <q-list>
-        <q-item-label header class="text-grey-8">
-          Menü
-        </q-item-label>
+        <q-item-label header class="text-grey-8"> Menü </q-item-label>
         <EssentialLink
           v-for="link in essentialLinks"
           :key="link.title"
@@ -100,8 +96,16 @@ import { defineComponent, ref } from '@vue/composition-api'
 
 export default defineComponent({
   name: 'MainLayout',
+  data() {
+    return { metaTitle: '' }
+  },
+  meta() {
+    return {
+      titleTemplate: (title) => `${title} - Das VRrostete Labyrinth`
+    }
+  },
   components: { EssentialLink },
-  setup () {
+  setup() {
     const leftDrawerOpen = ref(false)
     const essentialLinks = ref(linksData)
 
