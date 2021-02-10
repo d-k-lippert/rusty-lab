@@ -55,10 +55,10 @@ const linksData = [
     link: '#/anleitung'
   },
   {
-    title: 'Spiel-Dokument',
+    title: 'Reparartur Handbuch',
     caption: '/game-doc',
     icon: 'receipt_long',
-    link: '#/game-doc'
+    link: 'documents/Reparatur-Handbuch.pdf'
   },
   {
     title: 'Spiel',
@@ -101,7 +101,7 @@ export default defineComponent({
   },
   meta() {
     return {
-      titleTemplate: (title:string) => `${title} - Das VRrostete Labyrinth`
+      titleTemplate: (title: string) => `${title} - Das VRrostete Labyrinth`
     }
   },
   components: { EssentialLink },
