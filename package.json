@@ -1,8 +1,8 @@
 {
   "name": "rusty-lab",
   "version": "0.0.1",
-  "description": "A Web-App combined with a Unity project to trigger game events from a webpage",
-  "productName": "Quasar App",
+  "description": "The Webapp for the Multiplayer-Escape-Room 'Das VRrostete Labyrinth' ",
+  "productName": "Das VRrostete Labyrinth",
   "author": "domklip <dominik@screenable.io>",
   "private": true,
   "scripts": {
