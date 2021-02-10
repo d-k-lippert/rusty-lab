@@ -9,69 +9,18 @@
     >
       <q-card style="width: 300px" class="q-px-sm q-pb-md">
         <q-card-section class="row items-center q-pb-none ">
-          <div class="text-h6">Terbium-Cube</div>
-          <q-space />
+        <!-- <div class="text-h6">Terbium-Cube </div> -->
+        <q-space />
         </q-card-section>
-        <q-card-section
-          class="row items-center justify-between q-pa-md q-ma-md"
-        >
-          <q-btn
-            size="xl"
-            label="T"
-            color="blue"
-            @click="resetPlayer"
-            round
-            dense
-            v-close-popup
-          />
-          <q-btn
-            size="xl"
-            icon="opacity"
-            color="positive"
-            @click="resetPlayer"
-            round
-            dense
-            v-close-popup
-          />
-          <q-btn
-            size="xl"
-            icon="opacity"
-            color="warning"
-            @click="resetPlayer"
-            round
-            dense
-            v-close-popup
-          />
+         <q-card-section class="row items-center justify-between q-pa-md q-ma-md">
+          <q-btn size="xl" label="T" color="blue" @click="resetPlayer" round dense v-close-popup />
+          <q-btn size="xl" icon="opacity" color="positive" @click="moveTerbiumCube"  round dense v-close-popup />
+          <q-btn size="xl" icon="opacity" color="warning" @click="resetPlayer"  round dense v-close-popup />
         </q-card-section>
-        <q-card-section
-          class="row items-center justify-between q-pa-md q-ma-md"
-        >
-          <q-btn
-            size="xl"
-            icon="opacity"
-            color="accent"
-            @click="resetPlayer"
-            round
-            dense
-            v-close-popup
-          />
-          <q-btn
-            size="xl"
-            icon="close"
-            @click="moveTerbiumCube"
-            round
-            dense
-            v-close-popup
-          />
-          <q-btn
-            size="xl"
-            icon="opacity"
-            color="red"
-            @click="resetPlayer"
-            round
-            dense
-            v-close-popup
-          />
+         <q-card-section class="row items-center justify-between q-pa-md q-ma-md">
+          <q-btn size="xl" icon="opacity" color="accent" @click="resetPlayer" round dense v-close-popup />
+          <q-btn size="xl" icon="close" @click="resetPlayer" round dense v-close-popup />
+          <q-btn size="xl" icon="opacity" color="red" @click="resetPlayer" round dense v-close-popup />
         </q-card-section>
         <q-card-section
           class="row items-center justify-between q-pa-md q-ma-md"
@@ -115,31 +64,30 @@ import eventBus from "src/event-bus/event-bus";
 export default defineComponent({
   name: "TerbiumDialog",
   props: { x: Number, y: Number },
-  setup(props) {
-    const terbiumModal = ref(false);
+  setup (props) {
+    const terbiumModal = ref(false)
+    const terbiumModalSolved = ref(false)
 
-    watch(
-      () => props,
-      () => {
-        console.log("deep ", props.x, props.y);
-        if (
-          (props.x === 11 && props.y === 3) ||
-          (props.x === 12 && props.y === 4)
-        ) {
-          terbiumModal.value = true;
-          console.log("OPEN TERBIUM MODAL!");
+    watch(() => props, () => {
+      console.log('deep ', props.x, props.y)
+      if (props.x === 11 && props.y === 3) {
+        if(terbiumModalSolved.value===false){
+          terbiumModal.value = true
+          console.log('OPEN TERBIUM MODAL!')
         }
-      },
-      { deep: true }
-    );
+      }
+    },
+    { deep: true }
+    )
 
     function moveTerbiumCube() {
       const modal = document.querySelector(".q-dialog__backdrop.fixed-full");
       // adding class to modal
-      modal!.className += " right-answer";
-      eventBus.$emit("move-terbium-cube", () => {
-        console.log("terbium emitted");
-      });
+         modal!.className += ' right-answer'
+         eventBus.$emit('move-terbium-cube', () => {
+           console.log('terbium emitted')
+         })
+         terbiumModalSolved.value=true
     }
     function resetPlayer() {
       const modal = document.querySelector(".q-dialog__backdrop.fixed-full");

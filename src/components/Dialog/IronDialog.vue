@@ -9,8 +9,8 @@
     >
       <q-card style="width: 300px" class="q-px-sm q-pb-md">
         <q-card-section class="row items-center q-pb-none ">
-          <div class="text-h6">Eisen-Cube</div>
-          <q-space />
+        <!-- <div class="text-h6">Eisen-Cube </div> -->
+        <q-space />
         </q-card-section>
         <q-card-section
           class="row items-center justify-between q-pa-md q-ma-md"
@@ -43,66 +43,15 @@
             v-close-popup
           />
         </q-card-section>
-        <q-card-section
-          class="row items-center justify-between q-pa-md q-ma-md"
-        >
-          <q-btn
-            size="xl"
-            icon="drag_indicator"
-            color="accent"
-            @click="resetPlayer"
-            round
-            dense
-            v-close-popup
-          />
-          <q-btn
-            size="xl"
-            icon="close"
-            @click="moveIronCube"
-            round
-            dense
-            v-close-popup
-          />
-          <q-btn
-            size="xl"
-            icon="anchor"
-            color="red"
-            @click="resetPlayer"
-            round
-            dense
-            v-close-popup
-          />
+         <q-card-section class="row items-center justify-between q-pa-md q-ma-md">
+          <q-btn size="xl" icon="drag_indicator" color="accent" @click="resetPlayer" round dense v-close-popup />
+          <q-btn size="xl" icon="close" @click="resetPlayer"  round dense v-close-popup />
+          <q-btn size="xl" icon="anchor" color="red" @click="resetPlayer" round dense v-close-popup />
         </q-card-section>
-        <q-card-section
-          class="row items-center justify-between q-pa-md q-ma-md"
-        >
-          <q-btn
-            size="xl"
-            icon="change_history"
-            color="primary"
-            @click="resetPlayer"
-            round
-            dense
-            v-close-popup
-          />
-          <q-btn
-            size="xl"
-            icon="dangerous"
-            color="secondary"
-            @click="resetPlayer"
-            round
-            dense
-            v-close-popup
-          />
-          <q-btn
-            size="xl"
-            label="9"
-            color="black"
-            @click="resetPlayer"
-            round
-            dense
-            v-close-popup
-          />
+         <q-card-section class="row items-center justify-between q-pa-md q-ma-md">
+          <q-btn size="xl" icon="change_history" color="primary" @click="resetPlayer" round dense v-close-popup />
+          <q-btn size="xl" icon="dangerous" color="secondary" @click="resetPlayer" round dense v-close-popup />
+          <q-btn size="xl" label="8" color="black" @click="moveIronCube" round dense v-close-popup />
         </q-card-section>
       </q-card>
     </q-dialog>
@@ -115,28 +64,30 @@ import eventBus from "src/event-bus/event-bus";
 export default defineComponent({
   name: "IronDialog",
   props: { x: Number, y: Number },
-  setup(props) {
-    const ironModal = ref(false);
+  setup (props) {
+    const ironModal = ref(false)
+    const ironModalSolved = ref(false)
 
-    watch(
-      () => props,
-      () => {
-        console.log("deep ", props.x, props.y);
-        if (props.x === 14 && props.y === 8) {
-          ironModal.value = true;
-          console.log("OPEN MODAL!");
+    watch(() => props, () => {
+      console.log('deep ', props.x, props.y)
+      if (props.x === 14 && props.y === 8) {
+        if(ironModalSolved.value===false){
+          ironModal.value = true
+          console.log('OPEN MODAL!')
         }
-      },
-      { deep: true }
-    );
+      }
+    },
+    { deep: true }
+    )
 
     function moveIronCube() {
       const modal = document.querySelector(".q-dialog__backdrop.fixed-full");
       // adding class to modal
-      modal!.className += " right-answer";
-      eventBus.$emit("move-iron-cube", () => {
-        console.log("iron emitted");
-      });
+         modal!.className += ' right-answer'
+         eventBus.$emit('move-iron-cube', () => {
+           console.log('iron emitted')
+         })
+         ironModalSolved.value = true
     }
     function resetPlayer() {
       const modal = document.querySelector(".q-dialog__backdrop.fixed-full");

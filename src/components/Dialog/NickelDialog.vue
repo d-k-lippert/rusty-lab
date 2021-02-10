@@ -9,8 +9,8 @@
     >
       <q-card style="width: 300px" class="q-px-sm q-pb-md">
         <q-card-section class="row items-center q-pb-none ">
-          <div class="text-h6">Nickel-Cube</div>
-          <q-space />
+        <!-- <div class="text-h6">Nickel-Cube </div> -->
+        <q-space />
         </q-card-section>
         <q-card-section
           class="row items-center justify-between q-pa-md q-ma-md"
@@ -43,66 +43,15 @@
             v-close-popup
           />
         </q-card-section>
-        <q-card-section
-          class="row items-center justify-between q-pa-md q-ma-md"
-        >
-          <q-btn
-            size="xl"
-            icon="anchor"
-            color="accent"
-            @click="resetPlayer"
-            round
-            dense
-            v-close-popup
-          />
-          <q-btn
-            size="xl"
-            icon="close"
-            @click="moveNickelCube"
-            round
-            dense
-            v-close-popup
-          />
-          <q-btn
-            size="xl"
-            icon="anchor"
-            color="red"
-            @click="resetPlayer"
-            round
-            dense
-            v-close-popup
-          />
+         <q-card-section class="row items-center justify-between q-pa-md q-ma-md">
+          <q-btn size="xl" icon="anchor" color="accent" @click="resetPlayer" round dense v-close-popup />
+          <q-btn size="xl" icon="close" @click="resetPlayer" round dense v-close-popup />
+          <q-btn size="xl" icon="anchor" color="red" @click="resetPlayer" round dense v-close-popup />
         </q-card-section>
-        <q-card-section
-          class="row items-center justify-between q-pa-md q-ma-md"
-        >
-          <q-btn
-            size="xl"
-            icon="change_history"
-            color="primary"
-            @click="resetPlayer"
-            round
-            dense
-            v-close-popup
-          />
-          <q-btn
-            size="xl"
-            icon="dangerous"
-            color="secondary"
-            @click="resetPlayer"
-            round
-            dense
-            v-close-popup
-          />
-          <q-btn
-            size="xl"
-            label="9"
-            color="black"
-            @click="resetPlayer"
-            round
-            dense
-            v-close-popup
-          />
+         <q-card-section class="row items-center justify-between q-pa-md q-ma-md">
+          <q-btn size="xl" icon="change_history" color="primary" @click="resetPlayer" round dense v-close-popup />
+          <q-btn size="xl" label="3" color="secondary" @click="moveNickelCube" round dense v-close-popup />
+          <q-btn size="xl" label="9" color="black" @click="resetPlayer" round dense v-close-popup />
         </q-card-section>
       </q-card>
     </q-dialog>
@@ -115,31 +64,30 @@ import eventBus from "src/event-bus/event-bus";
 export default defineComponent({
   name: "NickelDialog",
   props: { x: Number, y: Number },
-  setup(props) {
-    const nickelModal = ref(false);
+  setup (props) {
+    const nickelModal = ref(false)
+    const nickelModalSolved = ref(false)
 
-    watch(
-      () => props,
-      () => {
-        console.log("deep ", props.x, props.y);
-        if (
-          (props.x === 11 && props.y === 6) ||
-          (props.x === 10 && props.y === 5)
-        ) {
-          nickelModal.value = true;
-          console.log("OPEN NICKEL MODAL!");
+    watch(() => props, () => {
+      console.log('deep ', props.x, props.y)
+      if (props.x === 11 && props.y === 6) {
+        if(nickelModalSolved.value===false){
+          nickelModal.value = true
+          console.log('OPEN NICKEL MODAL!')
         }
-      },
-      { deep: true }
-    );
+      }
+    },
+    { deep: true }
+    )
 
     function moveNickelCube() {
       const modal = document.querySelector(".q-dialog__backdrop.fixed-full");
       // adding class to modal
-      modal!.className += " right-answer";
-      eventBus.$emit("move-nickel-cube", () => {
-        console.log("nickel emitted");
-      });
+         modal!.className += ' right-answer'
+         eventBus.$emit('move-nickel-cube', () => {
+           console.log('nickel emitted')
+         })
+         nickelModalSolved.value=true
     }
     function resetPlayer() {
       const modal = document.querySelector(".q-dialog__backdrop.fixed-full");
