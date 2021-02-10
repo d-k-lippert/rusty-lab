@@ -101,7 +101,7 @@ export default defineComponent({
   },
   meta() {
     return {
-      titleTemplate: (title) => `${title} - Das VRrostete Labyrinth`
+      titleTemplate: (title:string) => `${title} - Das VRrostete Labyrinth`
     }
   },
   components: { EssentialLink },
