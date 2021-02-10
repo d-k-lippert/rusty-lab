@@ -50,25 +50,25 @@ const linksData = [
     title: 'Was ist das VRostete Labyrinth?',
     caption: '/',
     icon: 'help',
-    link: '/'
+    link: '#/'
   },
   {
     title: 'Spiel-Anleitung',
     caption: '/anleitung',
     icon: 'description',
-    link: '/anleitung'
+    link: '#/anleitung'
   },
   {
     title: 'Spiel-Dokument',
     caption: '/game-doc',
     icon: 'receipt_long',
-    link: '/game-doc'
+    link: '#/game-doc'
   },
   {
     title: 'Spiel',
     caption: '/game',
     icon: 'sports_esports',
-    link: '/game'
+    link: '#/game'
   }
   /* {
     title: 'Forum',

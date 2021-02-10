@@ -4,17 +4,17 @@
     <q-dialog v-model="dysprosiumModal" persistent transition-show="scale" transition-hide="jump-up">
       <q-card style="width: 300px" class="q-px-sm q-pb-md">
         <q-card-section class="row items-center q-pb-none ">
-        <div class="text-h6">Dysprosium-Cube </div>
+        <!-- <div class="text-h6">Dysprosium-Cube </div> -->
         <q-space />
         </q-card-section>
          <q-card-section class="row items-center justify-between q-pa-md q-ma-md">
           <q-btn size="xl" label="D" color="blue" @click="resetPlayer" round dense v-close-popup />
           <q-btn size="xl" icon="escalator" color="positive" @click="resetPlayer"  round dense v-close-popup />
-          <q-btn size="xl" icon="escalator" color="warning" @click="resetPlayer"  round dense v-close-popup />
+          <q-btn size="xl" label="5" color="warning" @click="moveDysprosiumCube"  round dense v-close-popup />
         </q-card-section>
          <q-card-section class="row items-center justify-between q-pa-md q-ma-md">
           <q-btn size="xl" icon="escalator" color="accent" @click="resetPlayer" round dense v-close-popup />
-          <q-btn size="xl" icon="close" @click="moveDysprosiumCube" round dense v-close-popup />
+          <q-btn size="xl" icon="anchor" @click="resetPlayer" round dense v-close-popup />
           <q-btn size="xl" icon="escalator" color="red" @click="resetPlayer" round dense v-close-popup />
         </q-card-section>
          <q-card-section class="row items-center justify-between q-pa-md q-ma-md">
@@ -35,12 +35,15 @@ export default defineComponent({
   props: { x: Number, y: Number },
   setup (props) {
     const dysprosiumModal = ref(false)
+    const dysprosiumModalSolved = ref(false)
 
     watch(() => props, () => {
       console.log('deep ', props.x, props.y)
-      if (props.x === 15 && props.y === 2) {
-        dysprosiumModal.value = true
-        console.log('OPEN DYSPROSIUM MODAL!')
+      if (props.x === 13 && props.y === 3) {
+        if(dysprosiumModalSolved.value === false){ 
+          dysprosiumModal.value = true
+          console.log('OPEN DYSPROSIUM MODAL!')
+        }
       }
     },
     { deep: true }
@@ -53,6 +56,7 @@ export default defineComponent({
          eventBus.$emit('move-dysprosium-cube', () => {
            console.log('dysprosium emitted')
          })
+         dysprosiumModalSolved.value = true
     }
     function resetPlayer () {
       const modal = document.querySelector('.q-dialog__backdrop.fixed-full')
