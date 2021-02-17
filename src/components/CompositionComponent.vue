@@ -7,7 +7,7 @@
       </li>
     </ul>
     <p>Count: {{ todoCount }} / {{ meta.totalCount }}</p>
-    <p>Active: {{ active ? "yes" : "no" }}</p>
+    <p>Active: {{ active ? 'yes' : 'no' }}</p>
     <p>Clicks on todos: {{ clickCount }}</p>
   </div>
 </template>
@@ -23,9 +23,9 @@ import {
 } from '@vue/composition-api'
 import { Todo, Meta } from './models'
 
-function useClickCount () {
+function useClickCount() {
   const clickCount = ref(0)
-  function increment () {
+  function increment() {
     clickCount.value += 1
     return clickCount.value
   }
@@ -33,7 +33,7 @@ function useClickCount () {
   return { clickCount, increment }
 }
 
-function useDisplayTodo (todos: Ref<Todo[]>) {
+function useDisplayTodo(todos: Ref<Todo[]>) {
   const todoCount = computed(() => todos.value.length)
   return { todoCount }
 }
@@ -57,7 +57,7 @@ export default defineComponent({
       type: Boolean
     }
   },
-  setup (props) {
+  setup(props) {
     return { ...useClickCount(), ...useDisplayTodo(toRef(props, 'todos')) }
   }
 })

@@ -1,14 +1,14 @@
 <template>
   <div class="page-content q-mt-md">
     <div>
-      <iron-dialog :x="userX" :y="userY" ></iron-dialog>
-      <cobalt-dialog :x="userX" :y="userY" ></cobalt-dialog>
-      <nickel-dialog :x="userX" :y="userY" ></nickel-dialog>
-      <terbium-dialog :x="userX" :y="userY" ></terbium-dialog>
-      <dysprosium-dialog :x="userX" :y="userY" ></dysprosium-dialog>
+      <iron-dialog :x="userX" :y="userY"></iron-dialog>
+      <cobalt-dialog :x="userX" :y="userY"></cobalt-dialog>
+      <nickel-dialog :x="userX" :y="userY"></nickel-dialog>
+      <terbium-dialog :x="userX" :y="userY"></terbium-dialog>
+      <dysprosium-dialog :x="userX" :y="userY"></dysprosium-dialog>
       <entry-input></entry-input>
 
-      <maze-grid :x="userX" :y="userY" > </maze-grid>
+      <maze-grid :x="userX" :y="userY"> </maze-grid>
       <div class="row justify-center">
         <!-- <q-btn
           v-if="isConnected"
@@ -36,10 +36,18 @@ import EntryInput from 'components/EntryInput.vue'
 import eventBus from 'src/event-bus/event-bus'
 
 export default defineComponent({
-  components: { MazeGrid, IronDialog, CobaltDialog, NickelDialog, TerbiumDialog, DysprosiumDialog, EntryInput },
+  components: {
+    MazeGrid,
+    IronDialog,
+    CobaltDialog,
+    NickelDialog,
+    TerbiumDialog,
+    DysprosiumDialog,
+    EntryInput
+  },
   name: 'CompositionComponent',
 
-  setup () {
+  setup() {
     const isConnected = ref(true)
     const userX = ref(5)
     const userY = ref(30)
@@ -108,11 +116,11 @@ export default defineComponent({
       connectToServer()
     })
 
-    function init () {
+    function init() {
       output = document.getElementById('output')
       testWebSocket()
     }
-    function testWebSocket () {
+    function testWebSocket() {
       webSocket = new WebSocket(wsUri)
       webSocket.onopen = function (evt) {
         onOpen(evt)
@@ -128,37 +136,37 @@ export default defineComponent({
       }
     }
 
-    function onOpen (evt: any) {
+    function onOpen(evt: any) {
       writeToScreen('connected from web')
       doSend('web')
     }
 
-    function onClose (evt: CloseEvent) {
+    function onClose(evt: CloseEvent) {
       writeToScreen('DISCONNECTED')
     }
 
-    function onMessage (evt: MessageEvent) {
+    function onMessage(evt: MessageEvent) {
       if (typeof evt.data === 'string') {
-      // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-        writeToScreen(
-          '<span style="color: blue;">RESPONSE: ' + evt.data.substring(1, evt.data.length) + '</span>')
+        // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+        /*  writeToScreen(
+          '<span style="color: blue;">RESPONSE: ' + evt.data.substring(1, evt.data.length) + '</span>') */
         checkAndPassMessage(evt.data) // pass data on to Maze-Grid.vue component
       }
       /* console.log(evt.data) */
       // webSocket.close();
     }
 
-    function onError (evt: Event) {
+    function onError(evt: Event) {
       // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
       writeToScreen('<span style="color: red;">ERROR:</span> ' + evt)
     }
 
-    function doSend (message: string) {
-      writeToScreen('SENT: ' + message)
+    function doSend(message: string) {
+      /* writeToScreen('SENT: ' + message) */
       webSocket.send(message)
     }
 
-    function writeToScreen (message: string) {
+    function writeToScreen(message: string) {
       var pre = document.createElement('p')
       pre.style.wordWrap = 'break-word'
       pre.innerHTML = message
@@ -167,16 +175,16 @@ export default defineComponent({
       }
     }
 
-    function connectToServer () {
+    function connectToServer() {
       init()
       isConnected.value = false
     }
 
-    function sendToServer () {
+    function sendToServer() {
       doSend('hit submit')
     }
 
-    function checkAndPassMessage (message: string) {
+    function checkAndPassMessage(message: string) {
       if (message.includes('X')) {
         userX.value = parseInt(message.substring(1, message.length)) // assign value to userX and pass it to child component to display it in lab
       }

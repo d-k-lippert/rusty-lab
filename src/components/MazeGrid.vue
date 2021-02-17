@@ -4,7 +4,7 @@
       class="maze-wrapper maze-height floor-color q-mb-md row justify-center"
     >
       <div
-        style="z-index: 4; touch-action: none; user-select: none;"
+        style="z-index: 4; touch-action: none; user-select: none"
         v-for="n in 512"
         :key="n"
         :style="computeStyle(n)"
@@ -20,31 +20,38 @@ import { defineComponent, ref, watch } from '@vue/composition-api'
 export default defineComponent({
   name: 'MazeGrid',
   props: { x: Number, y: Number },
-  setup (props) {
+  setup(props) {
     const userX = ref(5) // start value x
     const userY = ref(32) // start value y
 
-    watch(() => props.x, (oldVal, newVal) => { // always watch changes for x values sent from vr-app
-      /*       console.log(
+    watch(
+      () => props.x,
+      (oldVal, newVal) => {
+        // always watch changes for x values sent from vr-app
+        /*       console.log(
         'value für x',
         newVal
       ) */
-      const propToPosX = props.x
-      if (typeof propToPosX === 'number') {
-        userX.value = propToPosX
+        const propToPosX = props.x
+        if (typeof propToPosX === 'number') {
+          userX.value = propToPosX
+        }
       }
-    })
+    )
     // always watch changes for y values sent from vr-app
-    watch(() => props.y, (oldVal, newVal) => {
-      /*       console.log(
+    watch(
+      () => props.y,
+      (oldVal, newVal) => {
+        /*       console.log(
         'values für y',
         newVal
       ) */
-      const propToPosY = props.y
-      if (typeof propToPosY === 'number') {
-        userY.value = propToPosY
+        const propToPosY = props.y
+        if (typeof propToPosY === 'number') {
+          userY.value = propToPosY
+        }
       }
-    })
+    )
 
     const computeStyle = (gridPos: number) => {
       const colWidth = 6.25

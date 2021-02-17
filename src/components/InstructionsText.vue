@@ -3,9 +3,13 @@
     <div class="page-content">
       <h2>Spiel-Anleitung</h2>
       <h4>Vorbereitung</h4>
-      <p class="text-body1" > Um das VRostete Labyrinth zu spielen, sind zwei Spieler:innen notwendig.
-         Player 1 befindet sich in der VR-Anwendung und somit im VRosteten Labyrinth.
-          Player 2 ist der Operator und hilft Player 1 mit dieser Web-Anwendung durch das Labyrinth zu navigieren und die Rätsel darin zu lösen.</p>
+      <p class="text-body1">
+        Um das VRostete Labyrinth zu spielen, sind zwei Spieler:innen notwendig.
+        Player 1 befindet sich in der VR-Anwendung und somit im VRosteten
+        Labyrinth. Player 2 ist der Operator und hilft Player 1 mit dieser
+        Web-Anwendung durch das Labyrinth zu navigieren und die Rätsel darin zu
+        lösen.
+      </p>
       <h4>Ziel</h4>
       <h4>Hintergrund</h4>
       <h4>Story</h4>
@@ -23,45 +27,45 @@ export default defineComponent({
 <style scoped>
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-.page-content {
-  width: 95%;
-}
-h2 {
-  font-size: 3.5em;
-}
+  .page-content {
+    width: 95%;
+  }
+  h2 {
+    font-size: 3.5em;
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-.page-content {
-  width: 95%;
-}
+  .page-content {
+    width: 95%;
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-.page-content {
-  width: 80%;
-}
+  .page-content {
+    width: 80%;
+  }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-.page-content {
-  width: 60%;
-}
+  .page-content {
+    width: 60%;
+  }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-.page-content {
-  width: 60%;
-}
+  .page-content {
+    width: 60%;
+  }
 }
 @media only screen and (min-width: 1600px) {
-.page-content {
-  width: 60%;
-}
+  .page-content {
+    width: 60%;
+  }
 }
 
 .floor-color {

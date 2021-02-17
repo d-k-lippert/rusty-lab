@@ -1,22 +1,33 @@
 <template>
-<div>
+  <div>
     <q-dialog v-model="entryInput" persistent>
       <q-card style="min-width: 350px">
-
         <q-card-section>
-          <div class="text-h6">Bitte geben Sie die Block-Identifikationsnummer ein, um die Satellitenübertragung zu starten.</div>
+          <div class="text-h6">
+            Bitte geben Sie die Block-Identifikationsnummer ein, um die
+            Satellitenübertragung zu starten.
+          </div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          <q-input dense v-model="blockIdentifier" autofocus @keyup.enter="sendBlockIdentifier"/>
+          <q-input
+            dense
+            v-model="blockIdentifier"
+            autofocus
+            @keyup.enter="sendBlockIdentifier"
+          />
         </q-card-section>
 
         <q-card-actions align="center">
-          <q-btn color="positive" label="Bestätigen" @click="sendBlockIdentifier"/>
+          <q-btn
+            color="positive"
+            label="Bestätigen"
+            @click="sendBlockIdentifier"
+          />
         </q-card-actions>
       </q-card>
     </q-dialog>
-</div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -25,11 +36,11 @@ import eventBus from 'src/event-bus/event-bus'
 import { Notify } from 'quasar'
 export default defineComponent({
   name: 'EntryInput',
-  setup () {
+  setup() {
     const entryInput = ref(true)
     const blockIdentifier = ref('')
 
-    function sendBlockIdentifier () {
+    function sendBlockIdentifier() {
       console.log(blockIdentifier.value)
       if (blockIdentifier.value === 'ferrum-magneticum-97') {
         entryInput.value = false
@@ -63,7 +74,7 @@ export default defineComponent({
 })
 </script>
 <style>
-.q-dialog__backdrop.fixed-full{
+.q-dialog__backdrop.fixed-full {
   background: rgba(0, 0, 0, 0.95);
 }
 </style>
