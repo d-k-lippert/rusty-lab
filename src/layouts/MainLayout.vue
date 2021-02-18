@@ -46,25 +46,29 @@ const linksData = [
     title: 'Was ist das VRostete Labyrinth?',
     caption: '/',
     icon: 'help',
-    link: '#/'
+    link: '#/',
+    target: '_self'
   },
   {
     title: 'Spiel-Anleitung',
     caption: '/anleitung',
     icon: 'description',
-    link: '#/anleitung'
+    link: '#/anleitung',
+    target: '_self'
   },
   {
     title: 'Reparartur Handbuch',
     caption: '/game-doc',
     icon: 'receipt_long',
-    link: 'documents/Reparatur-Handbuch.pdf'
+    link: 'documents/Reparatur-Handbuch.pdf',
+    target: '_blank'
   },
   {
     title: 'Spiel',
     caption: '/game',
     icon: 'sports_esports',
-    link: '#/game'
+    link: '#/game',
+    target: '_self'
   }
   /* {
     title: 'Forum',
