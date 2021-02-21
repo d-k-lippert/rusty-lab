@@ -122,7 +122,7 @@ export default defineComponent({
     watch(
       () => props,
       () => {
-        console.log('deep ', props.x, props.y)
+        /* console.log('deep ', props.x, props.y) */
         if (props.x === 14 && props.y === 8) {
           if (ironModalSolved.value === false) {
             ironModal.value = true

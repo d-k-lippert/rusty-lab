@@ -57,7 +57,7 @@ const linksData = [
     target: '_self'
   },
   {
-    title: 'Reparartur Handbuch',
+    title: 'Reparatur Handbuch',
     caption: '/game-doc',
     icon: 'receipt_long',
     link: 'documents/Reparatur-Handbuch.pdf',

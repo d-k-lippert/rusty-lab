@@ -122,7 +122,7 @@ export default defineComponent({
     watch(
       () => props,
       () => {
-        console.log('deep ', props.x, props.y)
+        /* console.log('deep ', props.x, props.y) */
         if (props.x === 13 && props.y === 3) {
           if (dysprosiumModalSolved.value === false) {
             dysprosiumModal.value = true

@@ -9,16 +9,22 @@
       <entry-input></entry-input>
 
       <maze-grid :x="userX" :y="userY"> </maze-grid>
-      <div class="row justify-center">
-        <!-- <q-btn
-          v-if="isConnected"
-          @click="connectToServer"
-          class="floor-color"
-          text-color="white"
-          label="connect to server"
-        >
-        </q-btn> -->
-      </div>
+<!--         <div class="q-pa-md" style="max-width: 350px">
+          <q-list bordered class="rounded-borders">
+
+            <q-expansion-item :content-inset-level="0.5" expand-separator icon="help" label="Tipps" caption="3 Tipps verfügbar" default-opened>
+              <q-expansion-item :content-inset-level="0.5" expand-separator icon="first" label="Tipp 1">
+                <q-card>
+                  <q-card-section>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
+                      commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
+                      eveniet doloribus ullam aliquid.
+                  </q-card-section>
+                </q-card>
+              </q-expansion-item>
+            </q-expansion-item>
+          </q-list>
+        </div> -->
     </div>
     <div id="output"></div>
   </div>
@@ -34,6 +40,7 @@ import TerbiumDialog from 'components/Dialog/TerbiumDialog.vue'
 import DysprosiumDialog from 'components/Dialog/DysprosiumDialog.vue'
 import EntryInput from 'components/EntryInput.vue'
 import eventBus from 'src/event-bus/event-bus'
+import { setInterval } from 'timers'
 
 export default defineComponent({
   components: {
@@ -55,8 +62,8 @@ export default defineComponent({
     userX.value = 2
     userY.value = 2
 
-    /* const wsUri = 'ws://vrusty-server.herokuapp.com' */
-    const wsUri = 'ws://localhost:8080'
+    const wsUri = 'ws://vrusty-server.herokuapp.com'
+    /* const wsUri = 'ws://localhost:8080' */
     let output: HTMLElement | null
     let webSocket: WebSocket
 
@@ -139,6 +146,13 @@ export default defineComponent({
     function onOpen(evt: any) {
       writeToScreen('connected from web')
       doSend('web')
+      setInterval(
+        keepConnectionOpen
+      , 1000)
+    }
+
+    function keepConnectionOpen(){
+      doSend('web client still there')
     }
 
     function onClose(evt: CloseEvent) {

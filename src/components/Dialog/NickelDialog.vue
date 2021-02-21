@@ -122,7 +122,7 @@ export default defineComponent({
     watch(
       () => props,
       () => {
-        console.log('deep ', props.x, props.y)
+        /* console.log('deep ', props.x, props.y) */
         if (props.x === 11 && props.y === 6) {
           if (nickelModalSolved.value === false) {
             nickelModal.value = true
