@@ -123,7 +123,7 @@ export default defineComponent({
       () => props,
       () => {
         /* console.log('deep ', props.x, props.y) */
-        if (props.x === 11 && props.y === 6) {
+        if (props.x === 12 && props.y === 6) {
           if (nickelModalSolved.value === false) {
             nickelModal.value = true
             console.log('OPEN NICKEL MODAL!')
