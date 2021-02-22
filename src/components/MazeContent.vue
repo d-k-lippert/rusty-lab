@@ -148,7 +148,7 @@ export default defineComponent({
       doSend('web')
       setInterval(
         keepConnectionOpen
-      , 1000)
+      , 5000)
     }
 
     function keepConnectionOpen(){
