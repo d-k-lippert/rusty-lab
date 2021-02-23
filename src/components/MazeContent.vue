@@ -1,6 +1,7 @@
 <template>
   <div class="page-content q-mt-md">
     <div>
+      <game-progress :puzzlesSolved="puzzlesSolved"></game-progress> 
       <iron-dialog :x="userX" :y="userY"></iron-dialog>
       <cobalt-dialog :x="userX" :y="userY"></cobalt-dialog>
       <nickel-dialog :x="userX" :y="userY"></nickel-dialog>
@@ -9,22 +10,7 @@
       <entry-input></entry-input>
 
       <maze-grid :x="userX" :y="userY"> </maze-grid>
-<!--         <div class="q-pa-md" style="max-width: 350px">
-          <q-list bordered class="rounded-borders">
-
-            <q-expansion-item :content-inset-level="0.5" expand-separator icon="help" label="Tipps" caption="3 Tipps verfügbar" default-opened>
-              <q-expansion-item :content-inset-level="0.5" expand-separator icon="first" label="Tipp 1">
-                <q-card>
-                  <q-card-section>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
-                      commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
-                      eveniet doloribus ullam aliquid.
-                  </q-card-section>
-                </q-card>
-              </q-expansion-item>
-            </q-expansion-item>
-          </q-list>
-        </div> -->
+      <game-tips :puzzlesSolved="puzzlesSolved"></game-tips>
     </div>
     <div id="output"></div>
   </div>
@@ -33,6 +19,8 @@
 <script lang="ts">
 import { defineComponent, ref } from '@vue/composition-api'
 import MazeGrid from 'components/MazeGrid.vue'
+import GameProgress from 'components/GameProgress.vue'
+import GameTips from 'components/GameTips.vue'
 import IronDialog from 'components/Dialog/IronDialog.vue'
 import CobaltDialog from 'components/Dialog/CobaltDialog.vue'
 import NickelDialog from 'components/Dialog/NickelDialog.vue'
@@ -50,7 +38,9 @@ export default defineComponent({
     NickelDialog,
     TerbiumDialog,
     DysprosiumDialog,
-    EntryInput
+    EntryInput,
+    GameProgress,
+    GameTips
   },
   name: 'CompositionComponent',
 
@@ -58,6 +48,8 @@ export default defineComponent({
     const isConnected = ref(true)
     const userX = ref(5)
     const userY = ref(30)
+
+    const puzzlesSolved = ref(0)
 
     userX.value = 2
     userY.value = 2
@@ -201,6 +193,18 @@ export default defineComponent({
     }
 
     function checkAndPassMessage(message: string) {
+      if (message === 'tangramsolved') {
+        puzzlesSolved.value = 1 // Display that first puzzle was solved
+/*         console.log(puzzlesSolved.value) */
+      }
+      if (message === 'schluchtsolved') {
+        puzzlesSolved.value = 2 // Display that first puzzle was solved
+/*         console.log(puzzlesSolved.value) */
+      }
+      if (message === 'schiebesolved') {
+        puzzlesSolved.value = 3 // Display that first puzzle was solved
+/*         console.log(puzzlesSolved.value) */
+      }
       if (message.includes('X')) {
         userX.value = parseInt(message.substring(1, message.length)) // assign value to userX and pass it to child component to display it in lab
       }
@@ -210,7 +214,7 @@ export default defineComponent({
       }
     }
 
-    return { isConnected, connectToServer, sendToServer, userX, userY }
+    return { isConnected, connectToServer, sendToServer, userX, userY, puzzlesSolved }
   }
 })
 </script>
