@@ -1,6 +1,6 @@
 <template>
   <div class="row justify-center">
-    {{puzzlesSolved}} <br/>
+    <!-- {{puzzlesSolved}} <br/> -->
     {{amountPuzzlesSolved}}/3 Magneten repariert
   </div>
 </template>
