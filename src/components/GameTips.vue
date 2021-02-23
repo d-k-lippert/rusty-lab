@@ -108,7 +108,7 @@ export default defineComponent({
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
   .maze-wrapper {
-    width: 40%;
+    width: 60%;
     height: 450px;
   }
 }
@@ -116,13 +116,13 @@ export default defineComponent({
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
   .maze-wrapper {
-    width: 30%;
+    width: 50%;
     height: 450px;
   }
 }
 @media only screen and (min-width: 1600px) {
   .maze-wrapper {
-    width: 25%;
+    width: 40%;
     height: 450px;
   }
 }
