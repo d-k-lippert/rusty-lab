@@ -11,7 +11,7 @@
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
 
-        <q-toolbar-title> Das VRostete Labyrinth </q-toolbar-title>
+        <q-toolbar-title> Die Kunst des Reparierens </q-toolbar-title>
       </q-toolbar>
       <q-img src="../../public/rust.jpg" class="bg-img absolute-top"> </q-img>
     </q-header>
@@ -43,7 +43,7 @@ import EssentialLink from 'components/EssentialLink.vue'
 
 const linksData = [
   {
-    title: 'Was ist das VRostete Labyrinth?',
+    title: 'Was ist die Kunst des Reparierens?',
     caption: '/',
     icon: 'help',
     link: '#/',
@@ -57,7 +57,7 @@ const linksData = [
     target: '_self'
   },
   {
-    title: 'Reparatur Handbuch',
+    title: 'Reparatur-Handbuch',
     caption: '/game-doc',
     icon: 'receipt_long',
     link: 'documents/Reparatur-Handbuch.pdf',

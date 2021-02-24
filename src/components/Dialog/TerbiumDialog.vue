@@ -123,7 +123,10 @@ export default defineComponent({
       () => props,
       () => {
         /* console.log('deep ', props.x, props.y) */
-        if (props.x === 12 && props.y === 3 || props.x === 12 && props.y === 4) {
+        if (
+          (props.x === 12 && props.y === 3) ||
+          (props.x === 12 && props.y === 4)
+        ) {
           if (terbiumModalSolved.value === false) {
             terbiumModal.value = true
             console.log('OPEN TERBIUM MODAL!')

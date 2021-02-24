@@ -1,7 +1,7 @@
 <template>
   <div class="page-content q-mt-md">
     <div>
-      <game-progress :puzzlesSolved="puzzlesSolved"></game-progress> 
+      <game-progress :puzzlesSolved="puzzlesSolved"></game-progress>
       <iron-dialog :x="userX" :y="userY"></iron-dialog>
       <cobalt-dialog :x="userX" :y="userY"></cobalt-dialog>
       <nickel-dialog :x="userX" :y="userY"></nickel-dialog>
@@ -12,7 +12,7 @@
       <maze-grid :x="userX" :y="userY"> </maze-grid>
       <game-tips :puzzlesSolved="puzzlesSolved"></game-tips>
     </div>
-    <div id="output"></div>
+    <!-- <div id="output"></div> -->
   </div>
 </template>
 
@@ -56,7 +56,7 @@ export default defineComponent({
 
     const wsUri = 'ws://vrusty-server.herokuapp.com'
     /* const wsUri = 'ws://localhost:8080' */
-    let output: HTMLElement | null
+    /* let output: HTMLElement | null */
     let webSocket: WebSocket
 
     // prevents double triggering off emitted event
@@ -116,7 +116,7 @@ export default defineComponent({
     })
 
     function init() {
-      output = document.getElementById('output')
+      /* output = document.getElementById('output') */
       testWebSocket()
     }
     function testWebSocket() {
@@ -138,12 +138,10 @@ export default defineComponent({
     function onOpen(evt: any) {
       writeToScreen('connected from web')
       doSend('web')
-      setInterval(
-        keepConnectionOpen
-      , 5000)
+      setInterval(keepConnectionOpen, 5000)
     }
 
-    function keepConnectionOpen(){
+    function keepConnectionOpen() {
       doSend('web client still there')
     }
 
@@ -175,12 +173,12 @@ export default defineComponent({
     }
 
     function writeToScreen(message: string) {
-      var pre = document.createElement('p')
+      /*       var pre = document.createElement('p')
       pre.style.wordWrap = 'break-word'
       pre.innerHTML = message
       if (output != null) {
         output.appendChild(pre)
-      }
+      } */
     }
 
     function connectToServer() {
@@ -195,15 +193,15 @@ export default defineComponent({
     function checkAndPassMessage(message: string) {
       if (message === 'tangramsolved') {
         puzzlesSolved.value = 1 // Display that first puzzle was solved
-/*         console.log(puzzlesSolved.value) */
+        /*         console.log(puzzlesSolved.value) */
       }
       if (message === 'schluchtsolved') {
         puzzlesSolved.value = 2 // Display that first puzzle was solved
-/*         console.log(puzzlesSolved.value) */
+        /*         console.log(puzzlesSolved.value) */
       }
       if (message === 'schiebesolved') {
         puzzlesSolved.value = 3 // Display that first puzzle was solved
-/*         console.log(puzzlesSolved.value) */
+        /*         console.log(puzzlesSolved.value) */
       }
       if (message.includes('X')) {
         userX.value = parseInt(message.substring(1, message.length)) // assign value to userX and pass it to child component to display it in lab
@@ -214,7 +212,14 @@ export default defineComponent({
       }
     }
 
-    return { isConnected, connectToServer, sendToServer, userX, userY, puzzlesSolved }
+    return {
+      isConnected,
+      connectToServer,
+      sendToServer,
+      userX,
+      userY,
+      puzzlesSolved
+    }
   }
 })
 </script>

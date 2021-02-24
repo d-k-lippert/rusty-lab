@@ -1,5 +1,5 @@
 <template>
-  <div class="row justify-center ">
+  <div class="row justify-center">
     <!-- {{puzzlesSolved}} <br/> -->
     <q-circular-progress
       show-value
@@ -13,7 +13,9 @@
       min="0"
       max="3"
     ></q-circular-progress>
-    <div class="align-center">{{amountPuzzlesSolved}}/3 Klangmaschinen repariert</div>
+    <div class="align-center">
+      {{ amountPuzzlesSolved }}/3 Klangmaschinen repariert
+    </div>
   </div>
 </template>
 
@@ -27,17 +29,19 @@ export default defineComponent({
     const amountPuzzlesSolved = ref(0) // start value x
 
     const roundedProgress = ref(0)
-    roundedProgress.value = Math.round(amountPuzzlesSolved.value*33.333333333)
+    roundedProgress.value = Math.round(amountPuzzlesSolved.value * 33.333333333)
     watch(
       () => props.puzzlesSolved,
       (oldVal, newVal) => {
         if (typeof props.puzzlesSolved === 'number') {
-          amountPuzzlesSolved.value = props.puzzlesSolved 
-          roundedProgress.value = Math.round(amountPuzzlesSolved.value*33.333333333)
+          amountPuzzlesSolved.value = props.puzzlesSolved
+          roundedProgress.value = Math.round(
+            amountPuzzlesSolved.value * 33.333333333
+          )
         }
       }
     )
-  
+
     return { amountPuzzlesSolved, roundedProgress }
   }
 })
