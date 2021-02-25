@@ -10,8 +10,8 @@
       color="secondary"
       center-color="grey-5"
       track-color="transparent"
-      min="0"
-      max="3"
+      min = "0"
+      max = "3"
     ></q-circular-progress>
     <div class="align-center">
       {{ amountPuzzlesSolved }}/3 Klangmaschinen repariert

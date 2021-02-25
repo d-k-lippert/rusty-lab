@@ -7,6 +7,7 @@
       <nickel-dialog :x="userX" :y="userY"></nickel-dialog>
       <terbium-dialog :x="userX" :y="userY"></terbium-dialog>
       <dysprosium-dialog :x="userX" :y="userY"></dysprosium-dialog>
+      <decision-dialog :x="userX" :y="userY"></decision-dialog>
       <entry-input></entry-input>
 
       <maze-grid :x="userX" :y="userY"> </maze-grid>
@@ -29,6 +30,7 @@ import DysprosiumDialog from 'components/Dialog/DysprosiumDialog.vue'
 import EntryInput from 'components/EntryInput.vue'
 import eventBus from 'src/event-bus/event-bus'
 import { setInterval } from 'timers'
+import DecisionDialog from './Dialog/DecisionDialog.vue'
 
 export default defineComponent({
   components: {
@@ -40,7 +42,8 @@ export default defineComponent({
     DysprosiumDialog,
     EntryInput,
     GameProgress,
-    GameTips
+    GameTips,
+    DecisionDialog
   },
   name: 'CompositionComponent',
 
@@ -105,6 +108,14 @@ export default defineComponent({
     eventBus.$on('reset-player', () => {
       console.log('player got resetted!')
       doSend('reset player')
+    })
+
+    // prevents double triggering off emitted event
+    eventBus.$off('open-shortcut')
+    // listen to shortcut event
+    eventBus.$on('open-shortcut', () => {
+      console.log('player takes shortcut!')
+      doSend('open shortcut door')
     })
 
     // prevents double triggering off emitted event
