@@ -43,7 +43,7 @@ export default defineComponent({
   name: 'DecisionDialog',
   props: { x: Number, y: Number },
   setup(props) {
-    const decisionModal = ref(true)
+    const decisionModal = ref(false)
     const decisionModalActivated = ref(false)
 
     watch(
@@ -55,7 +55,7 @@ export default defineComponent({
             console.log(props.x, props.y)
             console.log('OPEN DECISION MODAL!')
           }
-        if (props.x === 2 && props.y === 13) {
+        if (props.x === 2 && props.y === 15) {
 /*           if (decisionModalActivated.value === false) {
             decisionModal.value = true
             console.log(props.x, props.y)

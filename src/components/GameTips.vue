@@ -110,7 +110,6 @@ export default defineComponent({
 @media only screen and (max-width: 600px) {
   .maze-wrapper {
     width: 100%;
-    height: 550px;
   }
 }
 
@@ -118,7 +117,6 @@ export default defineComponent({
 @media only screen and (min-width: 600px) {
   .maze-wrapper {
     width: 100%;
-    height: 700px;
   }
 }
 
@@ -126,7 +124,6 @@ export default defineComponent({
 @media only screen and (min-width: 768px) {
   .maze-wrapper {
     width: 90%;
-    height: 800px;
   }
 }
 
@@ -134,7 +131,6 @@ export default defineComponent({
 @media only screen and (min-width: 992px) {
   .maze-wrapper {
     width: 60%;
-    height: 450px;
   }
 }
 
@@ -142,13 +138,11 @@ export default defineComponent({
 @media only screen and (min-width: 1200px) {
   .maze-wrapper {
     width: 50%;
-    height: 450px;
   }
 }
 @media only screen and (min-width: 1600px) {
   .maze-wrapper {
     width: 40%;
-    height: 450px;
   }
 }
 /* .maze-wrapper {

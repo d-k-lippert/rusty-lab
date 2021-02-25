@@ -8,7 +8,7 @@
         v-for="n in 512"
         :key="n"
         :style="computeStyle(n)"
-      ></div>
+      ><!-- {{n}} --></div>
     </div>
     <!-- {{x}} {{y}} -->
   </div>
@@ -77,7 +77,26 @@ export default defineComponent({
             borderRadius: '4px',
             boxShadow: '0px 0px 15px #afffaf'
           }
-        } else {
+        }
+        else if (gridPos === 210) {
+          return {
+            position: 'block',
+            width: `${colWidth}%`,
+            height: `${colWidth / 2}%`,
+            background:
+            'linear-gradient(rgba(200, 0, 0, 0.55), rgba(200, 0, 0, 0.55))'
+          }
+        } 
+        else if (gridPos === 72 || gridPos === 142 || gridPos === 276 || gridPos === 284 || gridPos === 471) {
+          return {
+            position: 'block',
+            width: `${colWidth}%`,
+            height: `${colWidth / 2}%`,
+            background:
+            'linear-gradient(rgba(200, 200, 0, 0.3), rgba(200, 200, 0, 0.3))'
+          }
+        }
+        else {
           return {
             position: 'block',
             width: `${colWidth}%`,
@@ -118,7 +137,7 @@ export default defineComponent({
             col === 10 ||
             col === 12)) || // 12te reihe
         (row === 13 && (col === 4 || col === 10 || col === 14)) || // 13te reihe
-        (row === 14 && col !== 13) || // 14te reihe
+        (row === 14 && col !== 2 && col !== 13) || // 14te reihe
         (row === 15 && (col === 4 || col === 12 || col === 14)) || // 15te reihe
         (row === 16 && (col === 2 || col === 4 || col === 12)) || // 16te reihe
         (row === 17 && (col === 2 || col === 4 || (col >= 12 && col <= 14))) || // 17te reihe
