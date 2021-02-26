@@ -49,13 +49,13 @@ const linksData = [
     link: '#/',
     target: '_self'
   },
-  {
+ /*  {
     title: 'Spiel-Anleitung',
     caption: '/anleitung',
     icon: 'description',
     link: '#/anleitung',
     target: '_self'
-  },
+  }, */
   {
     title: 'Reparatur-Handbuch',
     caption: '/game-doc',
@@ -64,7 +64,7 @@ const linksData = [
     target: '_blank'
   },
   {
-    title: 'Spiel',
+    title: 'Eagle Eye',
     caption: '/game',
     icon: 'sports_esports',
     link: '#/game',
@@ -105,7 +105,7 @@ export default defineComponent({
   },
   meta() {
     return {
-      titleTemplate: (title: string) => `${title} - Das VRrostete Labyrinth`
+      titleTemplate: (title: string) => `${title} - Die Kunst des Reparierens`
     }
   },
   components: { EssentialLink },

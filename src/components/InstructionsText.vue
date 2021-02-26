@@ -4,11 +4,9 @@
       <h2>Spiel-Anleitung</h2>
       <h4>Vorbereitung</h4>
       <p class="text-body1">
-        Um das VRostete Labyrinth zu spielen, sind zwei Spieler:innen notwendig.
-        Player 1 befindet sich in der VR-Anwendung und somit im VRosteten
-        Labyrinth. Player 2 ist der Operator und hilft Player 1 mit dieser
-        Web-Anwendung durch das Labyrinth zu navigieren und die Rätsel darin zu
-        lösen.
+        Um die Kunst des Raparierens zu spielen, sind zwei Spieler:innen notwendig.
+        Player 1 befindet sich in der VR-Anwendung und somit im Eisenblock vom Künstler Ulrich Eller. Player 2 ist der Operator und hilft Player 1 mit dieser
+        Web-Anwendung durch das darin befindliche Labyrinth zu navigieren und die Rätsel darin zu lösen.
       </p>
       <h4>Ziel</h4>
       <h4>Hintergrund</h4>

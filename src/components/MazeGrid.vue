@@ -78,6 +78,7 @@ export default defineComponent({
             boxShadow: '0px 0px 15px #afffaf'
           }
         }
+        // tint shortcut door red in webapp
         else if (gridPos === 210) {
           return {
             position: 'block',
@@ -87,6 +88,7 @@ export default defineComponent({
             'linear-gradient(rgba(200, 0, 0, 0.55), rgba(200, 0, 0, 0.55))'
           }
         } 
+        // tint normal doors light yellow in webapp
         else if (gridPos === 72 || gridPos === 142 || gridPos === 276 || gridPos === 284 || gridPos === 471) {
           return {
             position: 'block',
