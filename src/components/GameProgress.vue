@@ -27,7 +27,9 @@ export default defineComponent({
   props: { puzzlesSolved: Number },
   setup(props) {
     const amountPuzzlesSolved = ref(0) // start value x
-
+    if (typeof props.puzzlesSolved === 'number') {
+      amountPuzzlesSolved.value = props.puzzlesSolved
+    }
     const roundedProgress = ref(0)
     roundedProgress.value = Math.round(amountPuzzlesSolved.value * 33.333333333)
     watch(

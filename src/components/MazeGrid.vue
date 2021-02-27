@@ -8,7 +8,9 @@
         v-for="n in 512"
         :key="n"
         :style="computeStyle(n)"
-      ><!-- {{n}} --></div>
+      >
+        <!-- {{n}} -->
+      </div>
     </div>
     <!-- {{x}} {{y}} -->
   </div>
@@ -85,20 +87,25 @@ export default defineComponent({
             width: `${colWidth}%`,
             height: `${colWidth / 2}%`,
             background:
-            'linear-gradient(rgba(200, 0, 0, 0.55), rgba(200, 0, 0, 0.55))'
+              'linear-gradient(rgba(200, 0, 0, 0.55), rgba(200, 0, 0, 0.55))'
           }
-        } 
+        }
         // tint normal doors light yellow in webapp
-        else if (gridPos === 72 || gridPos === 142 || gridPos === 276 || gridPos === 284 || gridPos === 471) {
+        else if (
+          gridPos === 72 ||
+          gridPos === 142 ||
+          gridPos === 276 ||
+          gridPos === 284 ||
+          gridPos === 471
+        ) {
           return {
             position: 'block',
             width: `${colWidth}%`,
             height: `${colWidth / 2}%`,
             background:
-            'linear-gradient(rgba(200, 200, 0, 0.3), rgba(200, 200, 0, 0.3))'
+              'linear-gradient(rgba(200, 200, 0, 0.3), rgba(200, 200, 0, 0.3))'
           }
-        }
-        else {
+        } else {
           return {
             position: 'block',
             width: `${colWidth}%`,

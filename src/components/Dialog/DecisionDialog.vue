@@ -9,7 +9,12 @@
       <q-card style="width: 300px" class="q-px-sm q-pb-md">
         <q-card-section class="row items-center q-pb-none">
           <div class="text-h6 q-mb-md bg-yellow">&nbsp; ACHTUNG! &nbsp;</div>
-          <div class="text"> Möchtest du diese Tür wirklich öffnen? Öffnest du sie, nimmst du eine Abkürzung, wirst jedoch nicht alle Klangmaschinen reparieren können. Diese Entscheidung wird weitreichende Konsequenzen mit sich ziehen. </div>
+          <div class="text">
+            Möchtest du diese Tür wirklich öffnen? Öffnest du sie, nimmst du
+            eine Abkürzung, wirst jedoch nicht alle Klangmaschinen reparieren
+            können. Diese Entscheidung wird weitreichende Konsequenzen mit sich
+            ziehen.
+          </div>
           <q-space />
         </q-card-section>
         <q-card-section
@@ -50,17 +55,13 @@ export default defineComponent({
       () => props,
       () => {
         /* console.log('deep ', props.x, props.y) */
+
+        if (props.x === 2 && props.y === 15) {
           if (decisionModalActivated.value === false) {
             decisionModal.value = true
             console.log(props.x, props.y)
             console.log('OPEN DECISION MODAL!')
           }
-        if (props.x === 2 && props.y === 15) {
-/*           if (decisionModalActivated.value === false) {
-            decisionModal.value = true
-            console.log(props.x, props.y)
-            console.log('OPEN DECISION MODAL!')
-          } */
         }
       },
       { deep: true }

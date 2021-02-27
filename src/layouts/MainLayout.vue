@@ -49,7 +49,7 @@ const linksData = [
     link: '#/',
     target: '_self'
   },
- /*  {
+  /*  {
     title: 'Spiel-Anleitung',
     caption: '/anleitung',
     icon: 'description',

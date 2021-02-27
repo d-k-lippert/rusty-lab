@@ -12,6 +12,7 @@
 
       <maze-grid :x="userX" :y="userY"> </maze-grid>
       <game-tips :puzzlesSolved="puzzlesSolved"></game-tips>
+      <win-dialog :puzzlesSolved="puzzlesSolved"></win-dialog>
     </div>
     <!-- <div id="output"></div> -->
   </div>
@@ -30,7 +31,8 @@ import DysprosiumDialog from 'components/Dialog/DysprosiumDialog.vue'
 import EntryInput from 'components/EntryInput.vue'
 import eventBus from 'src/event-bus/event-bus'
 import { setInterval } from 'timers'
-import DecisionDialog from './Dialog/DecisionDialog.vue'
+import DecisionDialog from 'components/Dialog/DecisionDialog.vue'
+import WinDialog from 'components/Dialog/WinDialog.vue'
 
 export default defineComponent({
   components: {
@@ -43,7 +45,8 @@ export default defineComponent({
     EntryInput,
     GameProgress,
     GameTips,
-    DecisionDialog
+    DecisionDialog,
+    WinDialog
   },
   name: 'CompositionComponent',
 
@@ -117,6 +120,14 @@ export default defineComponent({
       console.log('player takes shortcut!')
       doSend('open shortcut door')
     })
+
+/*         // prevents double triggering off emitted event
+    eventBus.$off('open-win-message')
+    // listen to shortcut event
+    eventBus.$on('open-win-message', () => {
+      console.log('player wins!')
+      doSend('open shortcut door')
+    }) */
 
     // prevents double triggering off emitted event
     eventBus.$off('connect-server')
