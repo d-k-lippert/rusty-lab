@@ -13,9 +13,17 @@
         <q-card-section class="row items-center q-pb-none">
           <div class="text-h6 q-mb-md">Glückwunsch &nbsp;</div>
           <div class="text">
-            Ihr habt alle Klangmaschinen rechtzeitig repariert. Die
-            Führungsetage ist zufrieden, der Auftraggeber ist zufrieden und die
-            Kunstkritiker loben den FH Campus. Ihr habt's echt drauf!
+            <p>Ihr habt alle Klangmaschinen rechtzeitig repariert.</p>
+            <p>
+              Benötigte Zeit:
+              <strong
+                ><u>{{ timeNeeded }} Minuten.</u></strong
+              >
+            </p>
+            <p>
+              Die Führungsetage ist zufrieden, der Auftraggeber ist zufrieden
+              und die Kunstkritiker loben den FH Campus. Ihr habt's echt drauf!
+            </p>
           </div>
           <q-space />
         </q-card-section>
@@ -23,13 +31,13 @@
           class="row items-center justify-center q-pa-md q-mt-md q-mb-md"
         >
           <q-btn
-            size="lg"
+            size="md"
             type="a"
             label="Feierabend machen"
             target="_self"
             href="/#/"
             dense
-            color="positive"
+            color="orange"
             v-close-popup
             class="q-ma-md q-pl-md q-pr-md"
           />
@@ -44,13 +52,13 @@ import { defineComponent, ref, watch } from '@vue/composition-api'
 import eventBus from 'src/event-bus/event-bus'
 export default defineComponent({
   name: 'WinDialog',
-  props: { puzzlesSolved: Number },
+  props: { puzzlesSolved: Number, timeNeeded: Number },
   setup(props) {
     const winModal = ref(false)
     const winModalActivated = ref(false)
 
-// decomment to show message 
-/*     if (winModalActivated.value === false) {
+    // decomment to show message
+    /*     if (winModalActivated.value === false) {
             winModal.value = true
             console.log(props.puzzlesSolved)
             console.log('OPEN WIN MODAL!')
@@ -64,6 +72,7 @@ export default defineComponent({
             winModal.value = true
             console.log(props.puzzlesSolved)
             console.log('OPEN WIN MODAL!')
+            sendWinMessage()
           }
         }
       },
@@ -71,12 +80,10 @@ export default defineComponent({
     )
 
     function sendWinMessage() {
-      const modal = document.querySelector('.q-dialog__backdrop.fixed-full')
       // adding class to modal
-      modal!.className += ' right-answer'
-/*       eventBus.$emit('open-win-message', () => {
+      eventBus.$emit('open-win-message', () => {
         console.log('win message emitted')
-      }) */
+      })
       winModalActivated.value = true
     }
 

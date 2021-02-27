@@ -55,7 +55,7 @@ export default defineComponent({
         })
 
         eventBus.$emit('connect-server', () => {
-          console.log('event emitted to conncet to server')
+          console.log('event emitted to connect to server')
         })
       } else {
         Notify.create({

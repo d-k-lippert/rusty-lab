@@ -12,7 +12,18 @@
 
       <maze-grid :x="userX" :y="userY"> </maze-grid>
       <game-tips :puzzlesSolved="puzzlesSolved"></game-tips>
-      <win-dialog :puzzlesSolved="puzzlesSolved"></win-dialog>
+      <win-dialog
+        :puzzlesSolved="puzzlesSolved"
+        :timeNeeded="playTime"
+      ></win-dialog>
+      <q-btn
+        size="lg"
+        @click="triggerInstantWin"
+        label="Instant Win"
+        dense
+        color="positive"
+        class="q-ma-md q-pl-md q-pr-md"
+      />
     </div>
     <!-- <div id="output"></div> -->
   </div>
@@ -54,8 +65,12 @@ export default defineComponent({
     const isConnected = ref(true)
     const userX = ref(5)
     const userY = ref(30)
+    const playTime = ref(0)
 
     const puzzlesSolved = ref(0)
+
+    let startTime = new Date()
+    let endTime = new Date()
 
     userX.value = 2
     userY.value = 2
@@ -121,18 +136,30 @@ export default defineComponent({
       doSend('open shortcut door')
     })
 
-/*         // prevents double triggering off emitted event
+    // prevents double triggering off emitted event
     eventBus.$off('open-win-message')
     // listen to shortcut event
     eventBus.$on('open-win-message', () => {
+      endTime = new Date()
+
+      const timeNeeded = Math.round(
+        (endTime.getTime() - startTime.getTime()) / 60000
+      )
+      playTime.value = timeNeeded
+      console.log(endTime.getTime())
+      console.log('benötigte Zeit: in min', timeNeeded)
+
       console.log('player wins!')
-      doSend('open shortcut door')
-    }) */
+      // doSend('open shortcut door')
+    })
 
     // prevents double triggering off emitted event
     eventBus.$off('connect-server')
     //
     eventBus.$on('connect-server', () => {
+      startTime = new Date()
+
+      console.log(startTime.getTime())
       console.log('connected!')
       connectToServer()
     })
@@ -212,6 +239,10 @@ export default defineComponent({
       doSend('hit submit')
     }
 
+    function triggerInstantWin() {
+      puzzlesSolved.value = 3
+    }
+
     function checkAndPassMessage(message: string) {
       if (message === 'tangramsolved') {
         puzzlesSolved.value = 1 // Display that first puzzle was solved
@@ -240,7 +271,9 @@ export default defineComponent({
       sendToServer,
       userX,
       userY,
-      puzzlesSolved
+      puzzlesSolved,
+      triggerInstantWin,
+      playTime
     }
   }
 })
