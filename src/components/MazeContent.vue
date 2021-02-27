@@ -13,13 +13,25 @@
       <maze-grid :x="userX" :y="userY"> </maze-grid>
       <game-tips :puzzlesSolved="puzzlesSolved"></game-tips>
       <win-dialog
-        :puzzlesSolved="puzzlesSolved"
+        :gameWon="gameWon"
         :timeNeeded="playTime"
       ></win-dialog>
+      <lose-dialog
+        :gameLost="gameLost"
+        :timeNeeded="playTime"
+      ></lose-dialog>
       <q-btn
         size="lg"
         @click="triggerInstantWin"
         label="Instant Win"
+        dense
+        color="positive"
+        class="q-ma-md q-pl-md q-pr-md"
+      />
+      <q-btn
+        size="lg"
+        @click="triggerInstantLose"
+        label="Instant Lose"
         dense
         color="positive"
         class="q-ma-md q-pl-md q-pr-md"
@@ -44,6 +56,7 @@ import eventBus from 'src/event-bus/event-bus'
 import { setInterval } from 'timers'
 import DecisionDialog from 'components/Dialog/DecisionDialog.vue'
 import WinDialog from 'components/Dialog/WinDialog.vue'
+import LoseDialog from 'components/Dialog/LoseDialog.vue'
 
 export default defineComponent({
   components: {
@@ -57,7 +70,8 @@ export default defineComponent({
     GameProgress,
     GameTips,
     DecisionDialog,
-    WinDialog
+    WinDialog,
+    LoseDialog
   },
   name: 'CompositionComponent',
 
@@ -66,6 +80,9 @@ export default defineComponent({
     const userX = ref(5)
     const userY = ref(30)
     const playTime = ref(0)
+
+    const gameWon = ref(false)
+    const gameLost = ref(false)
 
     const puzzlesSolved = ref(0)
 
@@ -240,7 +257,11 @@ export default defineComponent({
     }
 
     function triggerInstantWin() {
-      puzzlesSolved.value = 3
+      gameWon.value = true
+    }
+
+    function triggerInstantLose() {
+      gameLost.value = true
     }
 
     function checkAndPassMessage(message: string) {
@@ -273,6 +294,9 @@ export default defineComponent({
       userY,
       puzzlesSolved,
       triggerInstantWin,
+      gameWon,
+      triggerInstantLose,
+      gameLost,
       playTime
     }
   }

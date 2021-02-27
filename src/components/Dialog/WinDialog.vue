@@ -52,7 +52,7 @@ import { defineComponent, ref, watch } from '@vue/composition-api'
 import eventBus from 'src/event-bus/event-bus'
 export default defineComponent({
   name: 'WinDialog',
-  props: { puzzlesSolved: Number, timeNeeded: Number },
+  props: { gameWon: Boolean, timeNeeded: Number },
   setup(props) {
     const winModal = ref(false)
     const winModalActivated = ref(false)
@@ -67,10 +67,10 @@ export default defineComponent({
     watch(
       () => props,
       () => {
-        if (props.puzzlesSolved === 3) {
+        if (props.gameWon === true) {
           if (winModalActivated.value === false) {
             winModal.value = true
-            console.log(props.puzzlesSolved)
+            console.log(props.gameWon)
             console.log('OPEN WIN MODAL!')
             sendWinMessage()
           }
