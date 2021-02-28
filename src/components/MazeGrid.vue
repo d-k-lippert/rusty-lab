@@ -17,23 +17,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from '@vue/composition-api'
+import { defineComponent, Ref, ref, watch } from '@vue/composition-api'
 
 export default defineComponent({
   name: 'MazeGrid',
-  props: { x: Number, y: Number },
+  props: {  x: Number, 
+            y: Number,
+            shortcutDoorOpened: Boolean  },
   setup(props) {
     const userX = ref(5) // start value x
     const userY = ref(32) // start value y
+
+    const checkDoorState: Ref<boolean | undefined> = ref(false)
 
     watch(
       () => props.x,
       (oldVal, newVal) => {
         // always watch changes for x values sent from vr-app
-        /*       console.log(
-        'value für x',
-        newVal
-      ) */
         const propToPosX = props.x
         if (typeof propToPosX === 'number') {
           userX.value = propToPosX
@@ -44,14 +44,17 @@ export default defineComponent({
     watch(
       () => props.y,
       (oldVal, newVal) => {
-        /*       console.log(
-        'values für y',
-        newVal
-      ) */
         const propToPosY = props.y
         if (typeof propToPosY === 'number') {
           userY.value = propToPosY
         }
+      }
+    )
+    // watch when 
+    watch(
+      () => props.shortcutDoorOpened,
+      (oldVal, newVal) => {
+          checkDoorState.value = props.shortcutDoorOpened
       }
     )
 
@@ -80,19 +83,31 @@ export default defineComponent({
             boxShadow: '0px 0px 15px #afffaf'
           }
         }
-        // tint shortcut door red in webapp
         else if (gridPos === 210) {
-          return {
-            position: 'block',
-            width: `${colWidth}%`,
-            height: `${colWidth / 2}%`,
-            background:
-              'linear-gradient(rgba(200, 0, 0, 0.55), rgba(200, 0, 0, 0.55))'
+          // tint shortcut door red in webapp
+          if(!checkDoorState.value){
+            return {
+              position: 'block',
+              width: `${colWidth}%`,
+              height: `${colWidth / 2}%`,
+              background:
+                'linear-gradient(rgba(200, 0, 0, 0.55), rgba(200, 0, 0, 0.55))'
+            }
+          }
+          // tint shortcut door green in webapp
+          else{
+            return {
+              position: 'block',
+              width: `${colWidth}%`,
+              height: `${colWidth / 2}%`,
+              background:
+                'linear-gradient(rgba(0, 200, 0, 0.55), rgba(0, 200, 0, 0.55))'
+            }
           }
         }
         // tint normal doors light yellow in webapp
         else if (
-          gridPos === 72 ||
+          gridPos === 70 ||
           gridPos === 142 ||
           gridPos === 276 ||
           gridPos === 284 ||
@@ -105,7 +120,9 @@ export default defineComponent({
             background:
               'linear-gradient(rgba(200, 200, 0, 0.3), rgba(200, 200, 0, 0.3))'
           }
-        } else {
+        } 
+        // dont tint normal floor
+        else {
           return {
             position: 'block',
             width: `${colWidth}%`,

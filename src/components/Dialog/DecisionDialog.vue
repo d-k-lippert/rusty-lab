@@ -31,6 +31,7 @@
           <q-btn
             size="md"
             label="Abbrechen"
+            @click="resetShortcut"
             color="positive"
             dense
             v-close-popup
@@ -46,7 +47,7 @@ import { defineComponent, ref, watch } from '@vue/composition-api'
 import eventBus from 'src/event-bus/event-bus'
 export default defineComponent({
   name: 'DecisionDialog',
-  props: { x: Number, y: Number },
+  props: { doorOpened:Boolean },
   setup(props) {
     const decisionModal = ref(false)
     const decisionModalActivated = ref(false)
@@ -56,10 +57,10 @@ export default defineComponent({
       () => {
         /* console.log('deep ', props.x, props.y) */
 
-        if (props.x === 2 && props.y === 15) {
+        if (props.doorOpened) {
           if (decisionModalActivated.value === false) {
             decisionModal.value = true
-            console.log(props.x, props.y)
+            console.log(props.doorOpened)
             console.log('OPEN DECISION MODAL!')
           }
         }
@@ -76,8 +77,16 @@ export default defineComponent({
       })
       decisionModalActivated.value = true
     }
+        function resetShortcut() {
+      // adding class to modal
+      eventBus.$emit('reset-shortcut', () => {
+        console.log('reset shortcut emitted')
+      })
+       decisionModal.value = false
+      decisionModalActivated.value = false
+    }
 
-    return { decisionModal, openShortcut }
+    return { decisionModal, openShortcut, resetShortcut }
   }
 })
 </script>

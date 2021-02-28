@@ -7,10 +7,10 @@
       <nickel-dialog :x="userX" :y="userY"></nickel-dialog>
       <terbium-dialog :x="userX" :y="userY"></terbium-dialog>
       <dysprosium-dialog :x="userX" :y="userY"></dysprosium-dialog>
-      <decision-dialog :x="userX" :y="userY"></decision-dialog>
+      <decision-dialog :doorOpened="triggerDoorOpened"></decision-dialog>
       <entry-input></entry-input>
 
-      <maze-grid :x="userX" :y="userY"> </maze-grid>
+      <maze-grid :x="userX" :y="userY" :shortcutDoorOpened="shortcutDoorOpened"> </maze-grid>
       <game-tips :puzzlesSolved="puzzlesSolved"></game-tips>
       <win-dialog
         :gameWon="gameWon"
@@ -22,7 +22,7 @@
       ></lose-dialog>
       <q-btn
         size="lg"
-        @click="triggerInstantWin"
+        @click="triggerWin"
         label="Instant Win"
         dense
         color="positive"
@@ -30,8 +30,16 @@
       />
       <q-btn
         size="lg"
-        @click="triggerInstantLose"
+        @click="triggerLose"
         label="Instant Lose"
+        dense
+        color="positive"
+        class="q-ma-md q-pl-md q-pr-md"
+      />
+      <q-btn
+        size="lg"
+        @click="triggerDecisionFromVR"
+        label="trigger decision"
         dense
         color="positive"
         class="q-ma-md q-pl-md q-pr-md"
@@ -79,12 +87,16 @@ export default defineComponent({
     const isConnected = ref(true)
     const userX = ref(5)
     const userY = ref(30)
+
     const playTime = ref(0)
 
     const gameWon = ref(false)
     const gameLost = ref(false)
 
     const puzzlesSolved = ref(0)
+
+    const triggerDoorOpened = ref(false)
+    const shortcutDoorOpened = ref(false)
 
     let startTime = new Date()
     let endTime = new Date()
@@ -150,7 +162,17 @@ export default defineComponent({
     // listen to shortcut event
     eventBus.$on('open-shortcut', () => {
       console.log('player takes shortcut!')
+      shortcutDoorOpened.value = true
       doSend('open shortcut door')
+    })
+
+    // prevents double triggering off emitted event
+    eventBus.$off('reset-shortcut')
+    // listen to shortcut event
+    eventBus.$on('reset-shortcut', () => {
+      console.log('player resetted shortcut!')
+      resetDecisionFromWeb()
+      //doSend('open shortcut door')
     })
 
     // prevents double triggering off emitted event
@@ -256,12 +278,20 @@ export default defineComponent({
       doSend('hit submit')
     }
 
-    function triggerInstantWin() {
+    function triggerWin() {
       gameWon.value = true
     }
 
-    function triggerInstantLose() {
+    function triggerLose() {
       gameLost.value = true
+    }
+
+    function triggerDecisionFromVR(){
+      triggerDoorOpened.value=true
+    }
+
+    function resetDecisionFromWeb(){
+      triggerDoorOpened.value=false
     }
 
     function checkAndPassMessage(message: string) {
@@ -275,6 +305,18 @@ export default defineComponent({
       }
       if (message === 'schiebesolved') {
         puzzlesSolved.value = 3 // Display that first puzzle was solved
+        /*         console.log(puzzlesSolved.value) */
+      }
+      if (message === 'gamewon') {
+        triggerWin() // Display that first puzzle was solved
+        /*         console.log(puzzlesSolved.value) */
+      }
+      if (message === 'gamelost') {
+        triggerLose() // Display that first puzzle was solved
+        /*         console.log(puzzlesSolved.value) */
+      }
+      if (message === 'decisiontriggered') {
+        triggerDecisionFromVR() // Display that first puzzle was solved
         /*         console.log(puzzlesSolved.value) */
       }
       if (message.includes('X')) {
@@ -293,11 +335,14 @@ export default defineComponent({
       userX,
       userY,
       puzzlesSolved,
-      triggerInstantWin,
+      triggerWin,
       gameWon,
-      triggerInstantLose,
+      triggerLose,
       gameLost,
-      playTime
+      playTime,
+      shortcutDoorOpened,
+      triggerDoorOpened,
+      triggerDecisionFromVR
     }
   }
 })

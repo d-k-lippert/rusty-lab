@@ -37,7 +37,8 @@
             <p>Baujahr: 1997</p>
             <p>Künstler/in: Ulrich Eller</p>
             <p>Außenansicht:</p>
-            <q-img class="img-size q-mb-md" src="../../public/eisenblock.jpg" />
+            <q-img class="img-size q-mb-md" src="../../public/eisenblock.jpg" /><br>
+            <div class="text-small">Quelle: http://www.ulricheller.de/installation/eisenblock.html</div><br>
             <p>Besonderheiten: *</p>
           </q-card-section>
 
@@ -210,5 +211,8 @@ export default defineComponent({
   background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)),
     url(../../public/rust.jpg);
   color: #ffffff;
+}
+.text-small{
+  font-size: 10px;
 }
 </style>
