@@ -87,13 +87,15 @@
           />
           <q-btn
             size="xl"
-            label="3"
+            
             color="secondary"
             @click="moveNickelCube"
             round
             dense
             v-close-popup
-          />
+          >
+          &radic;25
+          </q-btn>
           <q-btn
             size="xl"
             label="9"
@@ -123,7 +125,7 @@ export default defineComponent({
       () => props,
       () => {
         /* console.log('deep ', props.x, props.y) */
-        if (props.x === 12 && props.y === 6) {
+        if ((props.x === 12 && props.y === 6) || (props.x === 11 && props.y === 5) || (props.x === 10 && props.y === 5)) {
           if (nickelModalSolved.value === false) {
             nickelModal.value = true
             console.log('OPEN NICKEL MODAL!')

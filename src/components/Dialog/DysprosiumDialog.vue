@@ -35,7 +35,7 @@
           />
           <q-btn
             size="xl"
-            label="5"
+            label="8"
             color="warning"
             @click="moveDysprosiumCube"
             round

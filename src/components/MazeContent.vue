@@ -300,24 +300,21 @@ export default defineComponent({
         /*         console.log(puzzlesSolved.value) */
       }
       if (message === 'schluchtsolved') {
-        puzzlesSolved.value = 2 // Display that first puzzle was solved
+        puzzlesSolved.value = 2 // Display that second puzzle was solved
         /*         console.log(puzzlesSolved.value) */
       }
       if (message === 'schiebesolved') {
-        puzzlesSolved.value = 3 // Display that first puzzle was solved
+        puzzlesSolved.value = 3 // Display that third puzzle was solved
         /*         console.log(puzzlesSolved.value) */
       }
       if (message === 'gamewon') {
-        triggerWin() // Display that first puzzle was solved
-        /*         console.log(puzzlesSolved.value) */
+        triggerWin() // Display  win screen
       }
       if (message === 'gamelost') {
-        triggerLose() // Display that first puzzle was solved
-        /*         console.log(puzzlesSolved.value) */
+        triggerLose() // Display lose screen
       }
       if (message === 'decisiontriggered') {
-        triggerDecisionFromVR() // Display that first puzzle was solved
-        /*         console.log(puzzlesSolved.value) */
+        triggerDecisionFromVR() // Display decision screen
       }
       if (message.includes('X')) {
         userX.value = parseInt(message.substring(1, message.length)) // assign value to userX and pass it to child component to display it in lab
