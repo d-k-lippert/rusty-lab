@@ -17,7 +17,7 @@
         >
           <q-btn
             size="xl"
-            label="T"
+            icon="opacity"
             color="blue"
             @click="resetPlayer"
             round
@@ -57,7 +57,7 @@
           />
           <q-btn
             size="xl"
-            icon="close"
+            icon="opacity"
             @click="resetPlayer"
             round
             dense
@@ -78,7 +78,7 @@
         >
           <q-btn
             size="xl"
-            icon="change_history"
+            icon="opacity"
             color="primary"
             @click="resetPlayer"
             round
@@ -87,7 +87,7 @@
           />
           <q-btn
             size="xl"
-            icon="dangerous"
+            icon="opacity"
             color="secondary"
             @click="resetPlayer"
             round
@@ -96,7 +96,7 @@
           />
           <q-btn
             size="xl"
-            label="9"
+            icon="opacity"
             color="black"
             @click="resetPlayer"
             round

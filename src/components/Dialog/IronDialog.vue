@@ -65,13 +65,14 @@
           />
           <q-btn
             size="xl"
-            icon="anchor"
             color="red"
             @click="resetPlayer"
             round
             dense
             v-close-popup
-          />
+          >
+          4²
+          </q-btn>
         </q-card-section>
         <q-card-section
           class="row items-center justify-between q-pa-md q-ma-md"
@@ -87,13 +88,14 @@
           />
           <q-btn
             size="xl"
-            icon="dangerous"
             color="secondary"
             @click="resetPlayer"
             round
             dense
             v-close-popup
-          />
+          >
+           &radic;16
+          </q-btn>
           <q-btn
             size="xl"
             label="8"

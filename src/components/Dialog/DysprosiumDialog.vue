@@ -35,7 +35,7 @@
           />
           <q-btn
             size="xl"
-            label="8"
+            label="2³"
             color="warning"
             @click="moveDysprosiumCube"
             round
@@ -48,7 +48,7 @@
         >
           <q-btn
             size="xl"
-            icon="escalator"
+            label="29"
             color="accent"
             @click="resetPlayer"
             round
@@ -65,7 +65,7 @@
           />
           <q-btn
             size="xl"
-            icon="escalator"
+            label=""
             color="red"
             @click="resetPlayer"
             round

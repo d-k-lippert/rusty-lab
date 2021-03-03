@@ -26,7 +26,7 @@
           />
           <q-btn
             size="xl"
-            icon="close"
+            label="+"
             color="positive"
             @click="resetPlayer"
             round
@@ -57,7 +57,7 @@
           />
           <q-btn
             size="xl"
-            icon="close"
+            label="#"
             @click="resetPlayer"
             round
             dense

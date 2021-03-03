@@ -85,8 +85,8 @@ export default defineComponent({
 
   setup() {
     const isConnected = ref(true)
-    const userX = ref(5)
-    const userY = ref(30)
+    const userX = ref(14)
+    const userY = ref(8)
 
     const playTime = ref(0)
 
@@ -101,8 +101,8 @@ export default defineComponent({
     let startTime = new Date()
     let endTime = new Date()
 
-    userX.value = 2
-    userY.value = 2
+    userX.value = 14
+    userY.value = 8
 
     const wsUri = 'ws://vrusty-server-two.herokuapp.com'
     /* const wsUri = 'ws://localhost:8080' */

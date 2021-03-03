@@ -35,7 +35,7 @@
           />
           <q-btn
             size="xl"
-            icon="anchor"
+            label="49"
             color="warning"
             @click="resetPlayer"
             round
@@ -48,7 +48,7 @@
         >
           <q-btn
             size="xl"
-            icon="anchor"
+            label="100"
             color="accent"
             @click="resetPlayer"
             round
