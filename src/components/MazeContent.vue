@@ -104,7 +104,7 @@ export default defineComponent({
     userX.value = 2
     userY.value = 2
 
-    const wsUri = 'ws://vrusty-server.herokuapp.com'
+    const wsUri = 'ws://vrusty-server-two.herokuapp.com'
     /* const wsUri = 'ws://localhost:8080' */
     /* let output: HTMLElement | null */
     let webSocket: WebSocket
