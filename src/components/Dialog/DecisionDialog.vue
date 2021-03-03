@@ -47,7 +47,7 @@ import { defineComponent, ref, watch } from '@vue/composition-api'
 import eventBus from 'src/event-bus/event-bus'
 export default defineComponent({
   name: 'DecisionDialog',
-  props: { doorOpened:Boolean },
+  props: { doorOpened: Boolean },
   setup(props) {
     const decisionModal = ref(false)
     const decisionModalActivated = ref(false)
@@ -77,12 +77,12 @@ export default defineComponent({
       })
       decisionModalActivated.value = true
     }
-        function resetShortcut() {
+    function resetShortcut() {
       // adding class to modal
       eventBus.$emit('reset-shortcut', () => {
         console.log('reset shortcut emitted')
       })
-       decisionModal.value = false
+      decisionModal.value = false
       decisionModalActivated.value = false
     }
 

@@ -21,9 +21,7 @@ import { defineComponent, Ref, ref, watch } from '@vue/composition-api'
 
 export default defineComponent({
   name: 'MazeGrid',
-  props: {  x: Number, 
-            y: Number,
-            shortcutDoorOpened: Boolean  },
+  props: { x: Number, y: Number, shortcutDoorOpened: Boolean },
   setup(props) {
     const userX = ref(5) // start value x
     const userY = ref(32) // start value y
@@ -50,11 +48,11 @@ export default defineComponent({
         }
       }
     )
-    // watch when 
+    // watch when
     watch(
       () => props.shortcutDoorOpened,
       (oldVal, newVal) => {
-          checkDoorState.value = props.shortcutDoorOpened
+        checkDoorState.value = props.shortcutDoorOpened
       }
     )
 
@@ -82,10 +80,9 @@ export default defineComponent({
             borderRadius: '4px',
             boxShadow: '0px 0px 15px #afffaf'
           }
-        }
-        else if (gridPos === 210) {
+        } else if (gridPos === 210) {
           // tint shortcut door red in webapp
-          if(!checkDoorState.value){
+          if (!checkDoorState.value) {
             return {
               position: 'block',
               width: `${colWidth}%`,
@@ -95,7 +92,7 @@ export default defineComponent({
             }
           }
           // tint shortcut door green in webapp
-          else{
+          else {
             return {
               position: 'block',
               width: `${colWidth}%`,
@@ -120,7 +117,7 @@ export default defineComponent({
             background:
               'linear-gradient(rgba(200, 200, 0, 0.3), rgba(200, 200, 0, 0.3))'
           }
-        } 
+        }
         // dont tint normal floor
         else {
           return {

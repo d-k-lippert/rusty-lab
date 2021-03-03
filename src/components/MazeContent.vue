@@ -10,40 +10,35 @@
       <decision-dialog :doorOpened="triggerDoorOpened"></decision-dialog>
       <entry-input></entry-input>
 
-      <maze-grid :x="userX" :y="userY" :shortcutDoorOpened="shortcutDoorOpened"> </maze-grid>
+      <maze-grid :x="userX" :y="userY" :shortcutDoorOpened="shortcutDoorOpened">
+      </maze-grid>
       <game-tips :puzzlesSolved="puzzlesSolved"></game-tips>
-      <win-dialog
-        :gameWon="gameWon"
-        :timeNeeded="playTime"
-      ></win-dialog>
-      <lose-dialog
-        :gameLost="gameLost"
-        :timeNeeded="playTime"
-      ></lose-dialog>
-      <q-btn
+      <win-dialog :gameWon="gameWon" :timeNeeded="playTime"></win-dialog>
+      <lose-dialog :gameLost="gameLost" :timeNeeded="playTime"></lose-dialog>
+      <!--       <q-btn
         size="lg"
         @click="triggerWin"
         label="Instant Win"
         dense
         color="positive"
         class="q-ma-md q-pl-md q-pr-md"
-      />
-      <q-btn
+      /> -->
+      <!--       <q-btn
         size="lg"
         @click="triggerLose"
         label="Instant Lose"
         dense
         color="positive"
         class="q-ma-md q-pl-md q-pr-md"
-      />
-      <q-btn
+      /> -->
+      <!-- <q-btn
         size="lg"
         @click="triggerDecisionFromVR"
         label="trigger decision"
         dense
         color="positive"
         class="q-ma-md q-pl-md q-pr-md"
-      />
+      /> -->
     </div>
     <!-- <div id="output"></div> -->
   </div>
@@ -172,7 +167,7 @@ export default defineComponent({
     eventBus.$on('reset-shortcut', () => {
       console.log('player resetted shortcut!')
       resetDecisionFromWeb()
-      //doSend('open shortcut door')
+      // doSend('open shortcut door')
     })
 
     // prevents double triggering off emitted event
@@ -286,12 +281,12 @@ export default defineComponent({
       gameLost.value = true
     }
 
-    function triggerDecisionFromVR(){
-      triggerDoorOpened.value=true
+    function triggerDecisionFromVR() {
+      triggerDoorOpened.value = true
     }
 
-    function resetDecisionFromWeb(){
-      triggerDoorOpened.value=false
+    function resetDecisionFromWeb() {
+      triggerDoorOpened.value = false
     }
 
     function checkAndPassMessage(message: string) {

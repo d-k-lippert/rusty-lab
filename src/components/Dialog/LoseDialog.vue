@@ -6,22 +6,20 @@
       transition-show="scale"
       transition-hide="jump-up"
     >
-      <q-card
-        style="width: 300px"
-        class="q-px-sm q-pb-md bg-red-6 text-white"
-      >
+      <q-card style="width: 300px" class="q-px-sm q-pb-md bg-red-6 text-white">
         <q-card-section class="row items-center q-pb-none">
           <div class="text-h6 q-mb-md">Störung! &nbsp;</div>
           <div class="text">
             <p>Verbindung unterbrochen. Das hätte nicht passieren dürfen.</p>
             <p>
-              Es wurden technische Schwierigkeiten festgestellt. Mehrere Versuche Sie mit 
-              der Bodeneinheit zu verbinden sind fehlgeschlagen. 
+              Es wurden technische Schwierigkeiten festgestellt. Mehrere
+              Versuche Sie mit der Bodeneinheit zu verbinden sind
+              fehlgeschlagen.
             </p>
             <p>
-              Das Objekt mit der Kennung: <br>
-              <code>ferrum-magneticum-97</code> <br>
-               wurde unwiderruflich verriegelt. Wir bitten um Ihr Verständnis.
+              Das Objekt mit der Kennung: <br />
+              <code>ferrum-magneticum-97</code> <br />
+              wurde unwiderruflich verriegelt. Wir bitten um Ihr Verständnis.
             </p>
           </div>
           <q-space />
@@ -48,7 +46,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, watch } from '@vue/composition-api'
-import eventBus from 'src/event-bus/event-bus'
+/* import eventBus from 'src/event-bus/event-bus' */
 export default defineComponent({
   name: 'LoseDialog',
   props: { gameLost: Boolean, timeNeeded: Number },
@@ -80,7 +78,7 @@ export default defineComponent({
 
     function sendLoseMessage() {
       // adding class to modal
-/*       eventBus.$emit('open-lose-message', () => {
+      /*       eventBus.$emit('open-lose-message', () => {
         console.log('lose message emitted')
       }) */
       loseModalActivated.value = true

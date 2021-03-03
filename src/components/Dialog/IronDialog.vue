@@ -71,7 +71,7 @@
             dense
             v-close-popup
           >
-          4²
+            4²
           </q-btn>
         </q-card-section>
         <q-card-section
@@ -94,7 +94,7 @@
             dense
             v-close-popup
           >
-           &radic;16
+            &radic;16
           </q-btn>
           <q-btn
             size="xl"

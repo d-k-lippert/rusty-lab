@@ -37,8 +37,14 @@
             <p>Baujahr: 1997</p>
             <p>Künstler/in: Ulrich Eller</p>
             <p>Außenansicht:</p>
-            <q-img class="img-size q-mb-md" src="../../public/eisenblock.jpg" /><br>
-            <div class="text-small">Quelle: http://www.ulricheller.de/installation/eisenblock.html</div><br>
+            <q-img
+              class="img-size q-mb-md"
+              src="../../public/eisenblock.jpg"
+            /><br />
+            <div class="text-small">
+              Quelle: http://www.ulricheller.de/installation/eisenblock.html
+            </div>
+            <br />
             <p>Besonderheiten: *</p>
           </q-card-section>
 
@@ -100,10 +106,10 @@
         <p>Eine beunruhigende Stille macht sich breit.</p>
         <p>
           Ihr spielt eine Runde Stein, Schere, Papier, wer in den Eisenblock
-          geht. Der Gewinner unterstützt das arme Schwein im Block. Als Operator
-          sitzt du im Van und hast das Reparatur-Handbuch sowie die
-          Überwachungssoftware: Eagle Eye vor dir. Ihr wünscht euch beide viel
-          Glück und verabschiedet euch.
+          geht. Die Person die gewonnen hat, unterstützt die Person in der VR
+          von außerhalb. Als Operator*in sitzt du im Van und hast das
+          Reparatur-Handbuch sowie die Überwachungssoftware: Eagle Eye vor dir.
+          Ihr wünscht euch beide viel Glück und verabschiedet euch.
         </p>
         <div class="row justify-evenly">
           <q-btn
@@ -212,7 +218,7 @@ export default defineComponent({
     url(../../public/rust.jpg);
   color: #ffffff;
 }
-.text-small{
+.text-small {
   font-size: 10px;
 }
 </style>
