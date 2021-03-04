@@ -93,7 +93,7 @@
             dense
             v-close-popup
           >
-            &radic;25
+            &radic;16
           </q-btn>
           <q-btn
             size="xl"
