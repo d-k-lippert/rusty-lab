@@ -184,7 +184,7 @@ export default defineComponent({
       console.log('benötigte Zeit: in min', timeNeeded)
 
       console.log('player wins!')
-      // doSend('open shortcut door')
+      doSend('end game')
     })
 
     // prevents double triggering off emitted event

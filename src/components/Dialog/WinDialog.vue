@@ -39,6 +39,7 @@
             dense
             color="orange"
             v-close-popup
+            @click="sendWinMessage"
             class="q-ma-md q-pl-md q-pr-md"
           />
         </q-card-section>
