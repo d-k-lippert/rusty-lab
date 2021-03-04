@@ -188,6 +188,14 @@ export default defineComponent({
     })
 
     // prevents double triggering off emitted event
+    eventBus.$off('open-lose-message')
+    // listen to shortcut event
+    eventBus.$on('open-lose-message', () => {
+      
+      doSend('lose game')
+    })
+
+    // prevents double triggering off emitted event
     eventBus.$off('connect-server')
     //
     eventBus.$on('connect-server', () => {

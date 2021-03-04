@@ -36,6 +36,7 @@
             dense
             color="orange"
             v-close-popup
+            @click="sendLoseMessage"
             class="q-ma-md q-pl-md q-pr-md"
           />
         </q-card-section>
@@ -46,7 +47,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, watch } from '@vue/composition-api'
-/* import eventBus from 'src/event-bus/event-bus' */
+import eventBus from 'src/event-bus/event-bus'
 export default defineComponent({
   name: 'LoseDialog',
   props: { gameLost: Boolean, timeNeeded: Number },
@@ -78,9 +79,9 @@ export default defineComponent({
 
     function sendLoseMessage() {
       // adding class to modal
-      /*       eventBus.$emit('open-lose-message', () => {
+            eventBus.$emit('open-lose-message', () => {
         console.log('lose message emitted')
-      }) */
+      })
       loseModalActivated.value = true
     }
 
