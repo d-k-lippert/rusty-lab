@@ -70,7 +70,7 @@ export default defineComponent({
             loseModal.value = true
             console.log(props.gameLost)
             console.log('OPEN LOSE MODAL!')
-            sendLoseMessage()
+            //sendLoseMessage()
           }
         }
       },
@@ -79,7 +79,7 @@ export default defineComponent({
 
     function sendLoseMessage() {
       // adding class to modal
-            eventBus.$emit('open-lose-message', () => {
+      eventBus.$emit('open-lose-message', () => {
         console.log('lose message emitted')
       })
       loseModalActivated.value = true

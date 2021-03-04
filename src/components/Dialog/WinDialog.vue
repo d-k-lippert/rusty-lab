@@ -73,7 +73,7 @@ export default defineComponent({
             winModal.value = true
             console.log(props.gameWon)
             console.log('OPEN WIN MODAL!')
-            sendWinMessage()
+            //sendWinMessage()
           }
         }
       },

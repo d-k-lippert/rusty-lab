@@ -191,7 +191,6 @@ export default defineComponent({
     eventBus.$off('open-lose-message')
     // listen to shortcut event
     eventBus.$on('open-lose-message', () => {
-      
       doSend('lose game')
     })
 
