@@ -298,7 +298,9 @@ export default defineComponent({
 
     function restartGame(){
       webSocket.close()
+      
       location.assign('/#/')
+      location.reload()
       //location.reload()
     }
 
