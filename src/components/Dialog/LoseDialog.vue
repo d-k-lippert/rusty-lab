@@ -79,9 +79,9 @@ export default defineComponent({
 
     function sendLoseMessage() {
       // adding class to modal
-     /*  eventBus.$emit('open-lose-message', () => {
+      eventBus.$emit('open-lose-message', () => {
         console.log('lose message emitted')
-      }) */
+      })
       loseModalActivated.value = true
       
     }

@@ -301,7 +301,6 @@ export default defineComponent({
       
       location.assign('/#/')
       location.reload()
-      //location.reload()
     }
 
     function checkAndPassMessage(message: string) {
