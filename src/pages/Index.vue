@@ -1,7 +1,7 @@
 <template>
   <q-page class="row justify-evenly">
     <div class="page-content q-mb-xl">
-      <h2>Was is die Kunst des Reparierens?</h2>
+      <h2>Was ist die Kunst des Reparierens?</h2>
       <h4>Vorbereitung</h4>
       <div>
         Die Kunst der Reparierens ist eine asynchrone Multiplayer

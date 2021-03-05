@@ -23,14 +23,14 @@
         color="positive"
         class="q-ma-md q-pl-md q-pr-md"
       /> -->
-      <!--       <q-btn
+            <q-btn
         size="lg"
         @click="triggerLose"
         label="Instant Lose"
         dense
         color="positive"
         class="q-ma-md q-pl-md q-pr-md"
-      /> -->
+      />
       <!-- <q-btn
         size="lg"
         @click="triggerDecisionFromVR"

@@ -27,12 +27,12 @@
         <q-card-section
           class="row items-center justify-center q-pa-md q-mt-md q-mb-md"
         >
+<!--                     target="_self"
+            href="tel:+4915784444905" -->
           <q-btn
             size="md"
             type="a"
             label="Führungsetage kontaktieren"
-            target="_self"
-            href="tel:+4915784444905"
             dense
             color="orange"
             v-close-popup
@@ -77,12 +77,20 @@ export default defineComponent({
       { deep: true }
     )
 
+    function reloadPage(){
+      window.open("tel:+4915784444905")
+      const pageLocation = location.assign('/#/')
+      //location.reload()
+    }
+
     function sendLoseMessage() {
       // adding class to modal
-      eventBus.$emit('open-lose-message', () => {
+     /*  eventBus.$emit('open-lose-message', () => {
         console.log('lose message emitted')
-      })
+      }) */
+      reloadPage()
       loseModalActivated.value = true
+      
     }
 
     return { loseModal, sendLoseMessage }
