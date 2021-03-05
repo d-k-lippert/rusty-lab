@@ -23,14 +23,14 @@
         color="positive"
         class="q-ma-md q-pl-md q-pr-md"
       /> -->
-            <q-btn
+            <!-- <q-btn
         size="lg"
         @click="triggerLose"
         label="Instant Lose"
         dense
         color="positive"
         class="q-ma-md q-pl-md q-pr-md"
-      />
+      /> -->
       <!-- <q-btn
         size="lg"
         @click="triggerDecisionFromVR"
@@ -296,6 +296,11 @@ export default defineComponent({
       triggerDoorOpened.value = false
     }
 
+    function restartGame(){
+      location.assign('/#/')
+      //location.reload()
+    }
+
     function checkAndPassMessage(message: string) {
       if (message === 'tangramsolved') {
         puzzlesSolved.value = 1 // Display that first puzzle was solved
@@ -314,6 +319,9 @@ export default defineComponent({
       }
       if (message === 'gamelost') {
         triggerLose() // Display lose screen
+      }
+      if (message === 'restartgame') {
+        restartGame() // reload the page to restart game
       }
       if (message === 'decisiontriggered') {
         triggerDecisionFromVR() // Display decision screen
